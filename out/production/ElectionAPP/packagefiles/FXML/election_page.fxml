@@ -18,12 +18,12 @@
       </Label>
       <VBox alignment="TOP_CENTER" layoutX="206.0" layoutY="79.0" prefHeight="446.0" prefWidth="188.0" spacing="25.0">
          <children>
-            <Label text="Age Group">
+            <Label text="Age">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label text="Sex">
+            <Label text="Gender">
                <font>
                   <Font size="16.0" />
                </font>
@@ -38,7 +38,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label text="Year">
+            <Label text="Year of Study">
                <font>
                   <Font size="16.0" />
                </font>
@@ -49,20 +49,18 @@
          <children>
             <HBox alignment="CENTER" prefHeight="25.0" prefWidth="575.0">
                <children>
-                  <RadioButton fx:id="age1824" mnemonicParsing="false" text="18-24" />
+                  <RadioButton fx:id="age1820" mnemonicParsing="false" text="18-20" />
+                  <RadioButton fx:id="age2124" mnemonicParsing="false" text="21-24" />
                   <RadioButton fx:id="age2529" mnemonicParsing="false" text="25-29" />
                   <RadioButton fx:id="age3039" mnemonicParsing="false" text="30-39" />
-                  <RadioButton fx:id="age4049" mnemonicParsing="false" text="40-49" />
-                  <RadioButton fx:id="age5064" mnemonicParsing="false" text="50-64" />
-                  <RadioButton fx:id="age65" mnemonicParsing="false" text="65+" />
+                  <RadioButton fx:id="age40" mnemonicParsing="false" text="40+" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="25.0" prefWidth="575.0">
                <children>
-                  <RadioButton fx:id="sexMale" mnemonicParsing="false" text="Male" />
-                  <RadioButton fx:id="sexFemale" mnemonicParsing="false" text="Female" />
-                  <RadioButton fx:id="sexLGBT" mnemonicParsing="false" text="LGBT/Non Binary" />
-                  <RadioButton fx:id="sexRefuse" mnemonicParsing="false" text="Don't know or Refuse" />
+                  <RadioButton fx:id="genderMale" mnemonicParsing="false" text="Male" />
+                  <RadioButton fx:id="genderFemale" mnemonicParsing="false" text="Female" />
+                  <RadioButton fx:id="genderOther" mnemonicParsing="false" text="Other" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="25.0" prefWidth="575.0">

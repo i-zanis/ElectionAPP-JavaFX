@@ -7,12 +7,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    public static int[][] data = new int[1][];
+    public static int[][] data = new int[0][];
 
     //method to increase the size of the array double
     //method to print results
     //method
-
+    // make graph for winner
+    // make graph for people who voted him
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("FXML/election_page.fxml"));

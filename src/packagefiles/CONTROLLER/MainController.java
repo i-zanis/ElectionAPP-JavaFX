@@ -11,19 +11,17 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
     ToggleGroup ageGroup = new ToggleGroup();
-    public RadioButton age1824;
+    public RadioButton age1820;
+    public RadioButton age2124;
     public RadioButton age2529;
     public RadioButton age3039;
-    public RadioButton age4049;
-    public RadioButton age5064;
-    public RadioButton age65;
+    public RadioButton age40;
 
 
-    ToggleGroup sexGroup = new ToggleGroup();
-    public RadioButton sexMale;
-    public RadioButton sexFemale;
-    public RadioButton sexLGBT;
-    public RadioButton sexRefuse;
+    ToggleGroup genderGroup = new ToggleGroup();
+    public RadioButton genderMale;
+    public RadioButton genderFemale;
+    public RadioButton genderOther;
 
 
     ToggleGroup originGroup = new ToggleGroup();
@@ -46,23 +44,23 @@ public class MainController implements Initializable {
     public RadioButton year3;
     public RadioButton year4;
 
+
+
     public TextField inputField;
     public Button voteButton;
     public Button resultsButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        age1824.setToggleGroup(ageGroup);
+        age1820.setToggleGroup(ageGroup);
+        age2124.setToggleGroup(ageGroup);
         age2529.setToggleGroup(ageGroup);
         age3039.setToggleGroup(ageGroup);
-        age4049.setToggleGroup(ageGroup);
-        age5064.setToggleGroup(ageGroup);
-        age65.setToggleGroup(ageGroup);
+        age40.setToggleGroup(ageGroup);
 
-        sexMale.setToggleGroup(sexGroup);
-        sexFemale.setToggleGroup(sexGroup);
-        sexLGBT.setToggleGroup(sexGroup);
-        sexRefuse.setToggleGroup(sexGroup);
+        genderMale.setToggleGroup(genderGroup);
+        genderFemale.setToggleGroup(genderGroup);
+        genderOther.setToggleGroup(genderGroup);
 
         originUK.setToggleGroup(originGroup);
         originEEA.setToggleGroup(originGroup);
@@ -74,6 +72,10 @@ public class MainController implements Initializable {
         courseIT.setToggleGroup(courseGroup);
         courseITMB.setToggleGroup(courseGroup);
 
-
+        year0.setToggleGroup(yearGroup);
+        year1.setToggleGroup(yearGroup);
+        year2.setToggleGroup(yearGroup);
+        year3.setToggleGroup(yearGroup);
+        year4.setToggleGroup(yearGroup);
     }
 }
