@@ -7,47 +7,49 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="packagefiles.CONTROLLER.MainController">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="532.0" stroke="#19536e" strokeType="INSIDE" strokeWidth="5.0" width="599.0" />
       <Label layoutX="128.0" layoutY="22.0" prefHeight="32.0" prefWidth="392.0" text="Please enter your details">
          <font>
-            <Font size="36.0" />
+            <Font name="System Bold" size="34.0" />
          </font>
       </Label>
       <VBox alignment="TOP_CENTER" layoutX="206.0" layoutY="79.0" prefHeight="446.0" prefWidth="188.0" spacing="25.0">
          <children>
             <Label text="Age">
                <font>
-                  <Font size="16.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
             </Label>
             <Label text="Gender">
                <font>
-                  <Font size="16.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label prefHeight="25.0" prefWidth="128.0" text="Country of Origin">
+            <Label alignment="CENTER" prefHeight="25.0" prefWidth="128.0" text="Origin">
                <font>
-                  <Font size="16.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
             </Label>
             <Label text="Course">
                <font>
-                  <Font size="16.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
             </Label>
             <Label text="Year of Study">
                <font>
-                  <Font size="16.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
             </Label>
          </children>
       </VBox>
-      <VBox alignment="TOP_CENTER" layoutX="75.0" layoutY="109.0" prefHeight="245.0" prefWidth="478.0" spacing="25.0">
+      <VBox alignment="TOP_CENTER" layoutX="4.0" layoutY="99.0" prefHeight="245.0" prefWidth="593.0" spacing="25.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="25.0" prefWidth="575.0">
+            <HBox alignment="CENTER" prefHeight="25.0" prefWidth="575.0" spacing="15.0">
                <children>
                   <RadioButton fx:id="age1820" mnemonicParsing="false" text="18-20" />
                   <RadioButton fx:id="age2124" mnemonicParsing="false" text="21-24" />
@@ -56,21 +58,21 @@
                   <RadioButton fx:id="age40" mnemonicParsing="false" text="40+" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="25.0" prefWidth="575.0">
+            <HBox alignment="CENTER" prefHeight="25.0" prefWidth="575.0" spacing="15.0">
                <children>
                   <RadioButton fx:id="genderMale" mnemonicParsing="false" text="Male" />
                   <RadioButton fx:id="genderFemale" mnemonicParsing="false" text="Female" />
                   <RadioButton fx:id="genderOther" mnemonicParsing="false" text="Other" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="25.0" prefWidth="575.0">
+            <HBox alignment="CENTER" prefHeight="25.0" prefWidth="575.0" spacing="15.0">
                <children>
                   <RadioButton fx:id="originUK" mnemonicParsing="false" text="UK" />
                   <RadioButton fx:id="originEEA" mnemonicParsing="false" text="EEA " />
                   <RadioButton fx:id="originInternational" mnemonicParsing="false" text="International" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="25.0" prefWidth="575.0">
+            <HBox alignment="CENTER" prefHeight="25.0" prefWidth="539.0" spacing="15.0">
                <children>
                   <RadioButton fx:id="courseCS" mnemonicParsing="false" text="Computer Science" />
                   <RadioButton fx:id="courseCG" mnemonicParsing="false" text="Computer Games" />
@@ -79,19 +81,19 @@
                   <RadioButton fx:id="courseITMB" mnemonicParsing="false" text="ITMB" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="575.0">
+            <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="575.0" spacing="15.0">
                <children>
                   <RadioButton fx:id="year0" mnemonicParsing="false" text="0" />
                   <RadioButton fx:id="year1" mnemonicParsing="false" text="1" />
                   <RadioButton fx:id="year2" mnemonicParsing="false" text="2" />
                   <RadioButton fx:id="year3" mnemonicParsing="false" text="3" />
-                  <RadioButton fx:id="year4" mnemonicParsing="false" text="4" />
+                  <RadioButton fx:id="year4" mnemonicParsing="false" text="4+" />
                </children>
             </HBox>
          </children>
       </VBox>
       <TextField fx:id="inputField" layoutX="69.0" layoutY="354.0" prefHeight="45.0" prefWidth="217.0" />
-      <Button fx:id="voteButton" layoutX="340.0" layoutY="354.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="108.0" text="Vote" />
+      <Button fx:id="voteButton" layoutX="340.0" layoutY="354.0" mnemonicParsing="false" onAction="#vote" prefHeight="45.0" prefWidth="108.0" text="Vote" />
       <Button fx:id="resultsButton" layoutX="390.0" layoutY="421.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="163.0" text="Check Final Results" />
    </children>
 </Pane>
