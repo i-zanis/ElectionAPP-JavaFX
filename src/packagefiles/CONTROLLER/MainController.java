@@ -104,11 +104,6 @@ public class MainController implements Initializable {
 
     public static void addData(String name, String age, String gender, String origin, String course, String year) {
         add2Array(nameList,name);
-        add2Array(ageList,age);
-        add2Array(genderList,gender);
-        add2Array(originList,origin);
-        add2Array(courseList,course);
-        add2Array(yearList,year);
         numberOfCandidates++; // increment the total number of candidates
         for (int i = 0; i < nameList.length; i++) {
             System.out.println(nameList[i]);
