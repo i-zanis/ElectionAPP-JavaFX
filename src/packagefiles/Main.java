@@ -5,45 +5,25 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import packagefiles.Candidate.*;
+import static packagefiles.Candidate.*;
 import java.util.HashMap;
 import java.util.Map;
 
+// main things to note is that there is no direct manipulation of the tally's number. the votes can only increment by 1.
 public class Main extends Application {
 
-    public static Candidate nameList = new String[0];
+    public static Candidate[] candidateList = new Candidate[0];
     public static int[] votesList = new int[0];
-    public static int numberOfCandidates = 0;
-
-    /*
-    public static Map<String,Integer> ageMap = new HashMap<>();
-    public static Map<String,Integer> genderMap = new HashMap<>();
-    public static Map<String,Integer> originMap = new HashMap<>();
-    public static Map<String,Integer> courseMap = new HashMap<>();
-    public static Map<String,Integer> yearMap = new HashMap<>();
-
-
-
-    public static void incrementValue(Map<String,Integer> map, String name) {
-        Integer value = map.get(name);
-        if (value == null) {
-            map.put(name, 1);
-        }
-        else {
-            map.put(name, value + 1);
-        }
-    }
-
-
-     */
-    public static void addData(String name, String age, String gender, String origin, String course, String year) {
-        int indexOfName = findCandidate(name);
+    
+    
+    public static void addData(Candidate candidate, String age, String gender, String origin, String course, String year) {
+        int indexOfName = findCandidate(candidate);
         if (indexOfName >= 0) {
-            votesList[indexOfName]++;
-            itemList[indexOfName].updateStats(age, gender, origin, course, year);
+            votesList[indexOfName]++; // to fulfil the assignments requirements
+            candidate.updateStats(age,gender,origin,course,year);
         }
         else {
-            add2ArrayString(name);
+            add2ArrayCandidate(candidate);
             add2ArrayInt();
         }
 
@@ -51,19 +31,19 @@ public class Main extends Application {
 
     /**
      * Adds one item to the String[]
-     * @param newValue the item to be added
+     * @param candidate the item to be added
      */
-    public static void add2ArrayString(String newValue) {
-        if (numberOfCandidates >= nameList.length) {
-            String[] temp = new String[nameList.length * 2 + 1]; // +1 to avoid multiplication with size 0
-            System.arraycopy(nameList, 0,temp, 0, nameList.length);
-            nameList = temp;
+    public static void add2ArrayCandidate(Candidate candidate) {
+        if (getNumberOfCandidates() >= candidateList.length) {
+            Candidate[] temp = new Candidate[candidateList.length * 2 + 1]; // +1 to avoid multiplication with size 0
+            System.arraycopy(candidateList, 0,temp, 0, candidateList.length);
+            candidateList = temp;
         }
-        nameList[numberOfCandidates++] = newValue;
+        candidateList[incrementNumberOfCandidates()] = candidate;
     }
     /**
      * Adds one item to the int[]. This one is different the number of candidates
-     * does not increase as it was increased in the add2ArrayString
+     * does not increase as it was increased in the add2ArrayCandidate
      * @param src Source/original array[]
      * @param newValue the item to be added
      */
@@ -78,12 +58,12 @@ public class Main extends Application {
 
     /**
      *
-     * @param name name of the candidate taken from the inputField
+     * @param candidate name of the candidate taken from the inputField
      * @return int
      */
-    public  static int findCandidate(String name) {
-       for (int i = 0; i < nameList.length; i++) {
-           if (nameList[i].equals(name)) return i;
+    public  static int findCandidate(Candidate candidate) {
+       for (int i = 0; i < candidateList.length; i++) {
+           if (candidateList[i].getName().equals(candidate.getName())) return i;
        }
        return -1;
     }

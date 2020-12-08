@@ -10,6 +10,16 @@ import packagefiles.Main.*;
 public class Candidate {
     String name = "";
 
+    public static int incrementNumberOfCandidates() {
+        return numberOfCandidates++;
+    }
+
+    public static int getNumberOfCandidates() {
+        return numberOfCandidates;
+    }
+
+    public static int numberOfCandidates = 0;
+
     int age1820 = 0;
     int age2124 = 0;
     int age2529 = 0;
@@ -36,6 +46,9 @@ public class Candidate {
     int year3 = 0;
     int year4 = 0;
 
+    public String getName() {
+        return name;
+    }
     public int getAge1820() {
         return age1820;
     }
@@ -156,7 +169,7 @@ public class Candidate {
         }
     }
     // testing to see if this works
-    protected void updateStats(String ageGroup, String genderType, String origin, String courseName, String year) {
+        void updateStats(String ageGroup, String genderType, String origin, String courseName, String year) {
         switch (ageGroup) {
             case "age1820" : this.age1820++;
             case "age2124" : this.age2124++;
@@ -189,4 +202,7 @@ public class Candidate {
             case "year4" : year4++;
         }
     }
-}
+
+
+
+    }
