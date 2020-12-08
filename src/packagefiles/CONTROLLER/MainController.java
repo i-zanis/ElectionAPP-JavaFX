@@ -91,9 +91,16 @@ public class MainController implements Initializable {
         String year = ((RadioButton) yearGroup.getSelectedToggle()).getId();
         // need to fix if all properties are selected
         System.out.println(name + age + gender + origin + course + year );
+        addData(name,age,gender,origin,course,year);
 
 
 
+    }
+    public void checkResults(ActionEvent event) throws Exception {
+        for (int i = 0; i < candidateList.length; i++) {
+            System.out.println(candidateList[i].getName());
+            System.out.println(voteList[i]);
+        }
     }
 
 

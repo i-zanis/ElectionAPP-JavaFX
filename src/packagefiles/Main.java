@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import static packagefiles.Candidate.*;
+import static packagefiles.Candidate.getNumberOfCandidates;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,17 +15,17 @@ import java.util.Map;
 public class Main extends Application {
 
     public static Candidate[] candidateList = new Candidate[0];
-    public static int[] votesList = new int[0];
+    public static int[] voteList = new int[0];
     
     
-    public static void addData(Candidate candidate, String age, String gender, String origin, String course, String year) {
-        int indexOfName = findCandidate(candidate);
+    public static void addData(String name, String age, String gender, String origin, String course, String year) {
+        int indexOfName = findCandidate(name);
         if (indexOfName >= 0) {
-            votesList[indexOfName]++; // to fulfil the assignments requirements
-            candidate.updateStats(age,gender,origin,course,year);
+            voteList[indexOfName]++; // to fulfil the assignments requirements
+            candidateList[indexOfName].updateStats(age,gender,origin,course,year);
         }
         else {
-            add2ArrayCandidate(candidate);
+            add2ArrayCandidate(new Candidate(name, age, gender, origin, course, year));
             add2ArrayInt();
         }
 
@@ -39,7 +41,7 @@ public class Main extends Application {
             System.arraycopy(candidateList, 0,temp, 0, candidateList.length);
             candidateList = temp;
         }
-        candidateList[incrementNumberOfCandidates()] = candidate;
+        candidateList[getNumberOfCandidates()] = candidate; // will find the next empty index
     }
     /**
      * Adds one item to the int[]. This one is different the number of candidates
@@ -48,12 +50,13 @@ public class Main extends Application {
      * @param newValue the item to be added
      */
     public static void add2ArrayInt() {
-        if (numberOfCandidates >= votesList.length) {
-            int[] temp = new int[votesList.length * 2 + 1]; // +1 to avoid multiplication with size 0
-            System.arraycopy(votesList, 0,temp, 0, votesList.length);
-            votesList = temp;
+        if (getNumberOfCandidates() >= voteList.length) {
+            int[] temp = new int[voteList.length * 2 + 1]; // +1 to avoid multiplication with size 0
+            System.arraycopy(voteList, 0,temp, 0, voteList.length);
+            voteList = temp;
         }
-        votesList[numberOfCandidates] = 1; // increases the vote tally by one for selected index
+        voteList[incrementNumberOfCandidates()] = 1; // will find the next empty index and increment it for next addition
+
     }
 
     /**
@@ -61,9 +64,10 @@ public class Main extends Application {
      * @param candidate name of the candidate taken from the inputField
      * @return int
      */
-    public  static int findCandidate(Candidate candidate) {
-       for (int i = 0; i < candidateList.length; i++) {
-           if (candidateList[i].getName().equals(candidate.getName())) return i;
+    public  static int findCandidate(String candidate) {
+       // take care for minus 1
+        for (int i = 0; i < candidateList.length -1; i++) {
+           if (candidateList[i].getName().equals(candidate)) return i;
        }
        return -1;
     }
