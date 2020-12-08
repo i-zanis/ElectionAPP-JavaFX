@@ -84,19 +84,13 @@ public class MainController implements Initializable {
 
     public void vote(ActionEvent event) throws Exception {
         String name = inputField.getText();
-
-        RadioButton radiobutton = (RadioButton)ageGroup.getSelectedToggle();
-        if (radiobutton != null) {
-            String s = radiobutton.getText();
-            System.out.println(s);
-        }
-
-
-        String age = ageGroup.getSelectedToggle().toString();
-        String gender = genderGroup.getSelectedToggle().toString();
-        String origin = originGroup.getSelectedToggle().toString();
-        String course = courseGroup.getSelectedToggle().toString();
-        String year = yearGroup.getSelectedToggle().toString();
+        String age = ((RadioButton) ageGroup.getSelectedToggle()).getId();
+        String gender = ((RadioButton) genderGroup.getSelectedToggle()).getId();
+        String origin = ((RadioButton) originGroup.getSelectedToggle()).getId();
+        String course = ((RadioButton) courseGroup.getSelectedToggle()).getId();
+        String year = ((RadioButton) yearGroup.getSelectedToggle()).getId();
+        // need to fix if all properties are selected
+        System.out.println(name + age + gender + origin + course + year );
         addData( name,  age,  gender,  origin,  course,  year);
 
 

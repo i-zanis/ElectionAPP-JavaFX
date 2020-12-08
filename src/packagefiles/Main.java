@@ -28,17 +28,43 @@ public class Main extends Application {
     }
 
     /**
-     * Adds one item to the array[]
+     * Adds one item to the String[]
      * @param src Source/original array[]
      * @param newValue the item to be added
      */
-    public static void add2Array(String[] src, String newValue) {
+    public static void add2ArrayString(String[] src, String newValue) {
         if (numberOfCandidates >= src.length) {
             String[] temp = new String[src.length * 2 + 1]; // +1 to avoid multiplication with size 0
             System.arraycopy(src, 0,temp, 0, src.length);
             src = temp;
         }
         src[numberOfCandidates++] = newValue;
+    }
+    /**
+     * Adds one item to the int[]. This one is different the number of candidates
+     * does not increase as it was increased in the add2ArrayString
+     * @param src Source/original array[]
+     * @param newValue the item to be added
+     */
+    public static void add2ArrayInt(int[] src, int newValue) {
+        if (numberOfCandidates >= src.length) {
+            int[] temp = new int[src.length * 2 + 1]; // +1 to avoid multiplication with size 0
+            System.arraycopy(src, 0,temp, 0, src.length);
+            src = temp;
+        }
+        src[numberOfCandidates] = newValue;
+    }
+
+    /**
+     *
+     * @param name name of the candidate taken from the inputField
+     * @return boolean
+     */
+    public  static boolean  findCandidate(String name) {
+        for (String s : nameList) {
+            if (s.equals(name)) return true;
+        }
+        return false;
     }
 
     /**
@@ -47,7 +73,6 @@ public class Main extends Application {
      * @param dst destination/copy of source array
      * @return boolean
      */
-
     // i will implement this later
     public static boolean copyArray(int[] src, int[] dst) {
         if (src.length > dst.length) return false;
