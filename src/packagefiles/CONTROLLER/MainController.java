@@ -1,15 +1,23 @@
 package packagefiles.CONTROLLER;
 
+import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import static packagefiles.Main.*;
+import static packagefiles.Candidate.*;
 
 public class MainController implements Initializable {
     ToggleGroup ageGroup = new ToggleGroup();
@@ -45,7 +53,6 @@ public class MainController implements Initializable {
     public RadioButton year2;
     public RadioButton year3;
     public RadioButton year4;
-
 
 
     public TextField inputField;
@@ -90,18 +97,49 @@ public class MainController implements Initializable {
         String course = ((RadioButton) courseGroup.getSelectedToggle()).getId();
         String year = ((RadioButton) yearGroup.getSelectedToggle()).getId();
         // need to fix if all properties are selected
-        System.out.println(name + age + gender + origin + course + year );
-        addData(name,age,gender,origin,course,year);
-
+        System.out.println(name + age + gender + origin + course + year);
+        addData(name, age, gender, origin, course, year);
 
 
     }
+
     public void checkResults(ActionEvent event) throws Exception {
-        for (int i = 0; i < candidateList.length; i++) {
+        for (int i = 0; i < getNumberOfCandidates(); i++) {
             System.out.println(candidateList[i].getName());
             System.out.println(voteList[i]);
+
+          /*class PieChartSample extends Application {
+
+
+                @Override
+                public void start(Stage stage) {
+                    Scene scene = new Scene(new Group());
+                    stage.setTitle("Imported Fruits");
+                    stage.setWidth(500);
+                    stage.setHeight(500);
+
+                    ObservableList<PieChart.Data> pieChartData =
+                            FXCollections.observableArrayList(
+                                    new PieChart.Data("Grapefruit", 13),
+                                    new PieChart.Data("Oranges", 25),
+                                    new PieChart.Data("Plums", 10),
+                                    new PieChart.Data("Pears", 22),
+                                    new PieChart.Data("Apples", 30));
+                    final PieChart chart = new PieChart(pieChartData);
+                    chart.setTitle("Imported Fruits");
+
+                    ((Group) scene.getRoot()).getChildren().add(chart);
+                    stage.setScene(scene);
+                    stage.show();
+                }
+
+                public void main(String[] args) {
+                    launch(args);
+                }
+            }
+
+      */
+
         }
     }
-
-
 }

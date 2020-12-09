@@ -203,7 +203,4 @@ public class Candidate {
             case "year4" : year4++;
         }
     }
-
-
-
-    }
+}

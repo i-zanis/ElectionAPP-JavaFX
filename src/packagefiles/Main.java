@@ -66,7 +66,7 @@ public class Main extends Application {
      */
     public  static int findCandidate(String candidate) {
        // take care for minus 1
-        for (int i = 0; i < candidateList.length -1; i++) {
+        for (int i = 0; i < getNumberOfCandidates(); i++) {
            if (candidateList[i].getName().equals(candidate)) return i;
        }
        return -1;
