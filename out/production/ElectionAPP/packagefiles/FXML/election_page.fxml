@@ -4,21 +4,24 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="packagefiles.CONTROLLER.MainController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="packagefiles.MainController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="532.0" stroke="#19536e" strokeType="INSIDE" strokeWidth="5.0" width="599.0" />
-      <Label layoutX="128.0" layoutY="22.0" prefHeight="32.0" prefWidth="392.0" text="Please enter your details">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="532.0" stroke="#0055a3" strokeType="INSIDE" strokeWidth="10.0" width="599.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="70.0" layoutX="-12.0" layoutY="5.0" stroke="#0055a3" strokeType="INSIDE" strokeWidth="2.0" width="614.0" />
+      <Label layoutX="105.0" layoutY="15.0" prefHeight="32.0" prefWidth="392.0" text="Please enter your details">
          <font>
             <Font name="System Bold" size="34.0" />
          </font>
       </Label>
-      <VBox alignment="TOP_CENTER" layoutX="206.0" layoutY="79.0" prefHeight="446.0" prefWidth="188.0" spacing="25.0">
+      <VBox alignment="TOP_CENTER" layoutX="206.0" layoutY="79.0" prefHeight="446.0" prefWidth="188.0" spacing="27.0">
          <children>
             <Label text="Age">
                <font>
@@ -45,9 +48,15 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
+            <TextField fx:id="inputField" prefHeight="45.0" prefWidth="211.0" />
+            <Button fx:id="resultsButton" mnemonicParsing="false" onAction="#checkResults" prefHeight="90.0" prefWidth="188.0" text="Check Final Results">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
          </children>
       </VBox>
-      <VBox alignment="TOP_CENTER" layoutX="4.0" layoutY="99.0" prefHeight="245.0" prefWidth="593.0" spacing="25.0">
+      <VBox alignment="TOP_CENTER" layoutX="4.0" layoutY="99.0" prefHeight="245.0" prefWidth="593.0" spacing="27.0">
          <children>
             <HBox alignment="CENTER" prefHeight="25.0" prefWidth="575.0" spacing="15.0">
                <children>
@@ -92,8 +101,14 @@
             </HBox>
          </children>
       </VBox>
-      <TextField fx:id="inputField" layoutX="69.0" layoutY="354.0" prefHeight="45.0" prefWidth="217.0" />
-      <Button fx:id="voteButton" layoutX="340.0" layoutY="354.0" mnemonicParsing="false" onAction="#vote" prefHeight="45.0" prefWidth="108.0" text="Vote" />
-      <Button fx:id="resultsButton" layoutX="390.0" layoutY="421.0" mnemonicParsing="false" onAction="#checkResults" prefHeight="78.0" prefWidth="163.0" text="Check Final Results" />
+      <Button fx:id="voteButton" layoutX="406.0" layoutY="340.0" mnemonicParsing="false" onAction="#vote" prefHeight="45.0" prefWidth="114.0" text="Vote">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Button>
+      <ImageView fitHeight="56.0" fitWidth="55.0" layoutX="14.0" layoutY="12.0">
+         <image>
+            <Image url="@../MEDIA/CustomNavigationLogo.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

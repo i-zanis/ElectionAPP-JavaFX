@@ -1,17 +1,22 @@
-package packagefiles.CONTROLLER;
+package packagefiles;
+
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import packagefiles.Main.*;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -61,6 +66,8 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
         age1820.setToggleGroup(ageGroup);
         age2124.setToggleGroup(ageGroup);
         age2529.setToggleGroup(ageGroup);
@@ -99,24 +106,70 @@ public class MainController implements Initializable {
         // need to fix if all properties are selected
         System.out.println(name + age + gender + origin + course + year);
         addData(name, age, gender, origin, course, year);
-
-
     }
 
+
+
+
+
     public void checkResults(ActionEvent event) throws Exception {
-        for (int i = 0; i < getNumberOfCandidates(); i++) {
-            System.out.println(candidateList[i].getName());
-            System.out.println(voteList[i]);
+           /* for (int i = 0; i < getNumberOfCandidates(); i++) {
+                System.out.println(candidateList[i].getName());
+                System.out.println(voteList[i]);
+                */
+
+
+                try {
+                    //Parent finalPageView = FXMLLoader.load(getClass().getResource(FINALPAGE));
+                    Scene finalPage = new Scene(new Group());
+                    Stage window = new Stage();
+
+                    ObservableList<PieChart.Data> pieChartData =
+                            FXCollections.observableArrayList();
+                    for (int i = 0; i < getNumberOfCandidates(); i++) {
+                        // multiplication * 1 to turn into floating to remove the error
+                        pieChartData.add(new PieChart.Data(candidateList[i].getName(),voteList[i] * 1.0/(voteList.length - 1)));
+                    }
+
+                    final PieChart chart = new PieChart(pieChartData);
+                    chart.setTitle("Votes");
+
+                    final Label caption = new Label("");
+                    caption.setStyle("-fx-font: 35 arial;");
+
+                    for (final PieChart.Data data : chart.getData()) {
+                        data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+                                e -> {
+                                    double total = 0;
+                                    for (PieChart.Data d : chart.getData()) {
+                                        total += d.getPieValue();
+                                    }
+                                    caption.setTranslateX(e.getSceneX());
+                                    caption.setTranslateY(e.getSceneY());
+                                    String text = String.format("%.1f%%", 100*data.getPieValue()/total) ;
+                                    caption.setText(text);
+                                }
+                        );
+                    }
+
+                    ((Group) finalPage.getRoot()).getChildren().add(chart);
+                    ((Group) finalPage.getRoot()).getChildren().add(caption);
+
+                    window.setScene(finalPage);
+                    window.setTitle("Results");
+                    window.show();
+                }
+                catch (Exception e) {
+                    System.out.println("Error occurred while opening the final results page.");
+                    e.printStackTrace();
+                }
+        }
+            }
 
           /*class PieChartSample extends Application {
 
 
-                @Override
-                public void start(Stage stage) {
-                    Scene scene = new Scene(new Group());
-                    stage.setTitle("Imported Fruits");
-                    stage.setWidth(500);
-                    stage.setHeight(500);
+
 
                     ObservableList<PieChart.Data> pieChartData =
                             FXCollections.observableArrayList(
@@ -128,10 +181,6 @@ public class MainController implements Initializable {
                     final PieChart chart = new PieChart(pieChartData);
                     chart.setTitle("Imported Fruits");
 
-                    ((Group) scene.getRoot()).getChildren().add(chart);
-                    stage.setScene(scene);
-                    stage.show();
-                }
 
                 public void main(String[] args) {
                     launch(args);
@@ -140,6 +189,3 @@ public class MainController implements Initializable {
 
       */
 
-        }
-    }
-}

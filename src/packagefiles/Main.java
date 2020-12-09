@@ -14,6 +14,8 @@ import java.util.Map;
 // main things to note is that there is no direct manipulation of the tally's number. the votes can only increment by 1.
 public class Main extends Application {
 
+    public static final String ELECTIONPAGE = "FXML/election_page.fxml";
+    public static final String FINALPAGE = "FXML/final_page.fxml";;
     public static Candidate[] candidateList = new Candidate[0];
     public static int[] voteList = new int[0];
     
@@ -94,7 +96,7 @@ public class Main extends Application {
     // it has to find if it contains the same name first then add stuff;
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("FXML/election_page.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource(ELECTIONPAGE));
         primaryStage.setTitle("Student Election");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
