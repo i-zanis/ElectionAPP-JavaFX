@@ -48,19 +48,28 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="inputField" prefHeight="45.0" prefWidth="211.0" />
-            <Button fx:id="resultsButton" mnemonicParsing="false" onAction="#checkResults" prefHeight="90.0" prefWidth="188.0" text="Check Final Results">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Button>
+            <VBox prefHeight="200.0" prefWidth="188.0" spacing="6.0">
+               <children>
+                  <TextField fx:id="inputField" prefHeight="32.0" prefWidth="188.0" />
+                  <Button fx:id="voteButton" mnemonicParsing="false" onAction="#vote" prefHeight="32.0" prefWidth="188.0" text="Vote">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="resultsButton" mnemonicParsing="false" onAction="#checkResults" prefHeight="32.0" prefWidth="188.0" text="Check Results">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="4.0" layoutY="99.0" prefHeight="245.0" prefWidth="593.0" spacing="27.0">
          <children>
             <HBox alignment="CENTER" prefHeight="25.0" prefWidth="575.0" spacing="15.0">
                <children>
-                  <RadioButton fx:id="age1820" mnemonicParsing="false" text="18-20" />
+                  <RadioButton fx:id="age1820" mnemonicParsing="false" selected="true" text="18-20" />
                   <RadioButton fx:id="age2124" mnemonicParsing="false" text="21-24" />
                   <RadioButton fx:id="age2529" mnemonicParsing="false" text="25-29" />
                   <RadioButton fx:id="age3039" mnemonicParsing="false" text="30-39" />
@@ -69,21 +78,21 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="25.0" prefWidth="575.0" spacing="15.0">
                <children>
-                  <RadioButton fx:id="genderMale" mnemonicParsing="false" text="Male" />
+                  <RadioButton fx:id="genderMale" mnemonicParsing="false" selected="true" text="Male" />
                   <RadioButton fx:id="genderFemale" mnemonicParsing="false" text="Female" />
                   <RadioButton fx:id="genderOther" mnemonicParsing="false" text="Other" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="25.0" prefWidth="575.0" spacing="15.0">
                <children>
-                  <RadioButton fx:id="originUK" mnemonicParsing="false" text="UK" />
+                  <RadioButton fx:id="originUK" mnemonicParsing="false" selected="true" text="UK" />
                   <RadioButton fx:id="originEEA" mnemonicParsing="false" text="EEA " />
                   <RadioButton fx:id="originInternational" mnemonicParsing="false" text="International" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="25.0" prefWidth="539.0" spacing="15.0">
                <children>
-                  <RadioButton fx:id="courseCS" mnemonicParsing="false" text="Computer Science" />
+                  <RadioButton fx:id="courseCS" mnemonicParsing="false" selected="true" text="Computer Science" />
                   <RadioButton fx:id="courseCG" mnemonicParsing="false" text="Computer Games" />
                   <RadioButton fx:id="courseWD" mnemonicParsing="false" text="Web Development" />
                   <RadioButton fx:id="courseIT" mnemonicParsing="false" text="IT" />
@@ -93,7 +102,7 @@
             <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="575.0" spacing="15.0">
                <children>
                   <RadioButton fx:id="year0" mnemonicParsing="false" text="0" />
-                  <RadioButton fx:id="year1" mnemonicParsing="false" text="1" />
+                  <RadioButton fx:id="year1" mnemonicParsing="false" selected="true" text="1" />
                   <RadioButton fx:id="year2" mnemonicParsing="false" text="2" />
                   <RadioButton fx:id="year3" mnemonicParsing="false" text="3" />
                   <RadioButton fx:id="year4" mnemonicParsing="false" text="4+" />
@@ -101,14 +110,19 @@
             </HBox>
          </children>
       </VBox>
-      <Button fx:id="voteButton" layoutX="406.0" layoutY="340.0" mnemonicParsing="false" onAction="#vote" prefHeight="45.0" prefWidth="114.0" text="Vote">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font></Button>
       <ImageView fitHeight="56.0" fitWidth="55.0" layoutX="14.0" layoutY="12.0">
          <image>
-            <Image url="@../MEDIA/CustomNavigationLogo.png" />
+            <Image url="@../MEDIA/uwl_logo.png" />
          </image>
       </ImageView>
+      <HBox layoutX="66.0" layoutY="475.0" prefHeight="100.0" prefWidth="519.0" spacing="2.0">
+         <children>
+            <Button fx:id="ageGroupButton" mnemonicParsing="false" onAction="#checkAgeGroup" prefHeight="25.0" prefWidth="94.0" text="Origin" />
+            <Button fx:id="ageGroupButton1" mnemonicParsing="false" onAction="#checkAgeGroup" prefHeight="25.0" prefWidth="94.0" text="Course" />
+            <Button fx:id="ageGroupButton2" mnemonicParsing="false" onAction="#checkAgeGroup" prefHeight="25.0" prefWidth="94.0" text="Gender" />
+            <Button fx:id="ageGroupButton21" mnemonicParsing="false" onAction="#checkAgeGroup" prefHeight="25.0" prefWidth="94.0" text="Year" />
+            <Button fx:id="ageGroupButton11" mnemonicParsing="false" onAction="#checkAgeGroup" prefHeight="25.0" prefWidth="94.0" text="Age" />
+         </children>
+      </HBox>
    </children>
 </Pane>

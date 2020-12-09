@@ -1,6 +1,7 @@
 package packagefiles;
 
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -109,34 +110,35 @@ public class MainController implements Initializable {
     }
 
 
-
-
-
+    /**
+     * Action event for checkResults button. Calculates the votes saved in the candidateList/voteList and displays 
+     * a pie chart with the candidates.
+     * @param event
+     * @throws Exception
+     */
     public void checkResults(ActionEvent event) throws Exception {
-           /* for (int i = 0; i < getNumberOfCandidates(); i++) {
-                System.out.println(candidateList[i].getName());
-                System.out.println(voteList[i]);
-                */
-
-
                 try {
-                    //Parent finalPageView = FXMLLoader.load(getClass().getResource(FINALPAGE));
-                    Scene finalPage = new Scene(new Group());
+                    // creates a scene and adds it to a group
+                    Scene resultsPage = new Scene(new Group());
+                    // creates a new window to display the stats
                     Stage window = new Stage();
-
-                    ObservableList<PieChart.Data> pieChartData =
+                    // makes an Observable list, similar to ArrayList but for FX nodes
+                    ObservableList<PieChart.Data> pieChartDataList =
                             FXCollections.observableArrayList();
                     for (int i = 0; i < getNumberOfCandidates(); i++) {
-                        // multiplication * 1 to turn into floating to remove the error
-                        pieChartData.add(new PieChart.Data(candidateList[i].getName(),voteList[i] * 1.0/(voteList.length - 1)));
+                        // adds the candidates name and calculates the percentage (candidates votes)/total votes
+                        // 1.0 to convert to floating point
+                        pieChartDataList.add(new PieChart.Data(candidateList[i].getName(),voteList[i]/(voteList.length - 1.0)));
                     }
-
-                    final PieChart chart = new PieChart(pieChartData);
+                    // create a Pie chart to display the votes
+                    final PieChart chart = new PieChart(pieChartDataList);
                     chart.setTitle("Votes");
 
-                    final Label caption = new Label("");
-                    caption.setStyle("-fx-font: 35 arial;");
+                    // creates a label to display the percentage
+                    final Label PERCENTAGE = new Label("");
+                    PERCENTAGE.setStyle("-fx-font: 35 arial;");
 
+                    // create a handler to display the percentage on click
                     for (final PieChart.Data data : chart.getData()) {
                         data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
                                 e -> {
@@ -144,48 +146,134 @@ public class MainController implements Initializable {
                                     for (PieChart.Data d : chart.getData()) {
                                         total += d.getPieValue();
                                     }
-                                    caption.setTranslateX(e.getSceneX());
-                                    caption.setTranslateY(e.getSceneY());
-                                    String text = String.format("%.1f%%", 100*data.getPieValue()/total) ;
-                                    caption.setText(text);
+                                    // set coordinates for label
+                                    PERCENTAGE.setTranslateX(e.getSceneX());
+                                    PERCENTAGE.setTranslateY(e.getSceneY());
+                                    // formats text and calculates based on (candidates votes)/total votes
+                                    String text = String.format("%.1f%%", data.getPieValue()/total * 100) ;
+                                    PERCENTAGE.setText(text);
                                 }
                         );
                     }
 
-                    ((Group) finalPage.getRoot()).getChildren().add(chart);
-                    ((Group) finalPage.getRoot()).getChildren().add(caption);
-
-                    window.setScene(finalPage);
+                    // adds the chart to the Group
+                    ((Group) resultsPage.getRoot()).getChildren().add(chart);
+                    ((Group) resultsPage.getRoot()).getChildren().add(PERCENTAGE);
+                    // sets the Scene to the window
+                    window.setScene(resultsPage);
+                    // applies the preferred icon
+                    window.getIcons().add(new Image(PIECHARTICON));
+                    // preferred title atop of the window
                     window.setTitle("Results");
+                    // shows the window
                     window.show();
+                    // makes the window not resizable
+                    window.setResizable(false);
+
+
+                    System.out.println("2124 " + candidateList[0].getAge1820());
+                    System.out.println("2124 " + candidateList[0].getAge2124());
+
+                    System.out.println("25 29 " + candidateList[0].getAge2529() );
+
+                    System.out.println("30 39 " + candidateList[0].getAge3039());
+
+                    System.out.println("40 " + candidateList[0].getAge40());
+
                 }
                 catch (Exception e) {
+                    // pinpoints the the location of the error occurrence
                     System.out.println("Error occurred while opening the final results page.");
                     e.printStackTrace();
                 }
         }
+
+    public void checkAgeGroup(ActionEvent event) throws Exception {
+        try {
+            // creates a scene and adds it to a group
+            Scene agrGroupPage = new Scene(new Group());
+            // creates a new window to display the stats
+            Stage window = new Stage();
+
+            // assign an initial value to increment in the loop
+            int a1820 = 0;
+            int a2124 = 0;
+            int a2529 = 0;
+            int a3039 = 0;
+            int a40   = 0;
+
+
+            for (int i = 0; i < getNumberOfCandidates(); i++) {
+                // adds the candidates name and calculates the percentage (candidates votes)/total votes
+                // multiplication * 1 to turn into floating to remove the error
+                a1820 += candidateList[i].getAge1820();
+                System.out.println(" check age 18 20 " + a1820);
+                a2124 += candidateList[i].getAge2124();
+                System.out.println(" check age 21 23 " + a2124);
+                a2529 += candidateList[i].getAge2529();
+                System.out.println(" check age 25 29 " + a2529);
+                a3039 += candidateList[i].getAge3039();
+                System.out.println(" check age 30 39 " + a3039);
+                a40   += candidateList[i].getAge40();
+                System.out.println(" check age 40  " + a40);
+            }
+            // makes an Observable list, similar to ArrayList but for FX nodes
+            ObservableList<PieChart.Data> pieChartDataList =
+                    FXCollections.observableArrayList(
+                            // 1.0 to convert to floating point
+                            new PieChart.Data("18 - 20", a1820/(voteList.length - 1.0)),
+                            new PieChart.Data("21 - 24", a2124/(voteList.length - 1.0)),
+                            new PieChart.Data("25 - 29", a2529 /(voteList.length - 1.0)),
+                            new PieChart.Data("30 - 39", a3039/(voteList.length - 1.0)),
+                            new PieChart.Data("40+",     a40 /(voteList.length - 1.0)));
+
+            // create a Pie chart to display the age group that voted
+            final PieChart chart = new PieChart(pieChartDataList);
+            chart.setTitle("Age Groups");
+
+            // creates a label to display the percentage
+            final Label PERCENTAGE = new Label("");
+            PERCENTAGE.setStyle("-fx-font: 35 arial;");
+
+            // create a handler to display the percentage on click
+            for (final PieChart.Data data : chart.getData()) {
+                data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+                        e -> {
+                            double total = 0;
+                            for (PieChart.Data d : chart.getData()) {
+                                total += d.getPieValue();
+                            }
+                            // set coordinates for label
+                            PERCENTAGE.setTranslateX(e.getSceneX());
+                            PERCENTAGE.setTranslateY(e.getSceneY());
+                            // formats text and calculates based on (candidates votes)/total votes
+                            String text = String.format("%.1f%%", data.getPieValue()/total * 100) ;
+                            PERCENTAGE.setText(text);
+                        }
+                );
             }
 
-          /*class PieChartSample extends Application {
-
-
-
-
-                    ObservableList<PieChart.Data> pieChartData =
-                            FXCollections.observableArrayList(
-                                    new PieChart.Data("Grapefruit", 13),
-                                    new PieChart.Data("Oranges", 25),
-                                    new PieChart.Data("Plums", 10),
-                                    new PieChart.Data("Pears", 22),
-                                    new PieChart.Data("Apples", 30));
-                    final PieChart chart = new PieChart(pieChartData);
-                    chart.setTitle("Imported Fruits");
-
-
-                public void main(String[] args) {
-                    launch(args);
-                }
+            // adds the chart to the Group
+            ((Group) agrGroupPage.getRoot()).getChildren().add(chart);
+            ((Group) agrGroupPage.getRoot()).getChildren().add(PERCENTAGE);
+            // sets the Scene to the window
+            window.setScene(agrGroupPage);
+            // applies the preferred icon
+            window.getIcons().add(new Image(PIECHARTICON));
+            // preferred title atop of the window
+            window.setTitle("Age Groups");
+            // shows the window
+            window.show();
+            // makes the window not resizable
+            window.setResizable(false);
+        }
+        catch (Exception e) {
+            // pinpoints the the location of the error occurrence
+            System.out.println("Error occurred while opening the Age Groups page.");
+            e.printStackTrace();
+        }
+    }
             }
 
-      */
+
 

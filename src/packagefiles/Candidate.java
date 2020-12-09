@@ -54,6 +54,7 @@ public class Candidate {
         return age1820;
     }
 
+
     public int getAge2124() {
         return age2124;
     }
@@ -134,73 +135,75 @@ public class Candidate {
         return year4;
     }
 
+
+
     Candidate(String name, String ageGroup, String genderType, String origin, String courseName, String year) {
         this.name = name;
 
         switch (ageGroup) {
-            case "age1820" : age1820++;
-            case "age2124" : age2124++;
-            case "age2529" : age2529++;
-            case "age3039" : age3039++;
-            case "age40" : age40++;
+            case "age1820" -> age1820++;
+            case "age2124" -> age2124++;
+            case "age2529" -> age2529++;
+            case "age3039" -> age3039++;
+            case "age40"   -> age40++;
         }
         switch (genderType) {
-            case "genderMale" : genderMale++;
-            case "genderFemale" : genderFemale++;
-            case "genderOther" : genderOther++;
+            case "genderMale"   -> genderMale++;
+            case "genderFemale" -> genderFemale++;
+            case "genderOther"  -> genderOther++;
         }
         switch (origin) {
-            case "originUK" : originUK++;
-            case "originEEA" : originEEA++;
-            case "originInternational" : originInternational++;
+            case "originUK"            -> originUK++;
+            case "originEEA"           -> originEEA++;
+            case "originInternational" -> originInternational++;
         }
         switch (courseName) {
-            case "courseCS" : courseCS++;
-            case "courseCG" : courseCG++;
-            case "courseWD" : courseWD++;
-            case "courseIT" : courseIT++;
-            case "courseITMB" : courseITMB++;
+            case "courseCS"     -> courseCS++;
+            case "courseCG"     -> courseCG++;
+            case "courseWD"     -> courseWD++;
+            case "courseIT"     -> courseIT++;
+            case "courseITMB"   -> courseITMB++;
         }
         switch (year) {
-            case "year0" : year0++;
-            case "year1" : year1++;
-            case "year2" : year2++;
-            case "year3" : year3++;
-            case "year4" : year4++;
+            case "year0" -> year0++;
+            case "year1" -> year1++;
+            case "year2" -> year2++;
+            case "year3" -> year3++;
+            case "year4" -> year4++;
         }
     }
     // testing to see if this works
         void updateStats(String ageGroup, String genderType, String origin, String courseName, String year) {
         switch (ageGroup) {
-            case "age1820" : this.age1820++;
-            case "age2124" : this.age2124++;
-            case "age2529" : this.age2529++;
-            case "age3039" : this.age3039++;
-            case "age40" :   this.age40++;
+            case "age1820" -> this.age1820++;
+            case "age2124" -> this.age2124++;
+            case "age2529" -> this.age2529++;
+            case "age3039" -> this.age3039++;
+            case "age40"   -> this.age40++;
         }
         switch (genderType) {
-            case "genderMale" : this.genderMale++;
-            case "genderFemale" : this.genderFemale++;
-            case "genderOther" : this.genderOther++;
+            case "genderMale"   -> this.genderMale++;
+            case "genderFemale" -> this.genderFemale++;
+            case "genderOther"  -> this.genderOther++;
         }
         switch (origin) {
-            case "originUK" : originUK++;
-            case "originEEA" : originEEA++;
-            case "originInternational" : originInternational++;
+            case "originUK" -> originUK++;
+            case "originEEA" -> originEEA++;
+            case "originInternational" -> originInternational++;
         }
         switch (courseName) {
-            case "courseCS" : courseCS++;
-            case "courseCG" : courseCG++;
-            case "courseWD" : courseWD++;
-            case "courseIT" : courseIT++;
-            case "courseITMB" : courseITMB++;
+            case "courseCS" -> courseCS++;
+            case "courseCG" -> courseCG++;
+            case "courseWD" -> courseWD++;
+            case "courseIT" -> courseIT++;
+            case "courseITMB" -> courseITMB++;
         }
         switch (year) {
-            case "year0" : year0++;
-            case "year1" : year1++;
-            case "year2" : year2++;
-            case "year3" : year3++;
-            case "year4" : year4++;
+            case "year0" -> year0++;
+            case "year1" -> year1++;
+            case "year2" -> year2++;
+            case "year3" -> year3++;
+            case "year4" -> year4++;
         }
     }
 }
