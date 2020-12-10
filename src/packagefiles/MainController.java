@@ -202,7 +202,6 @@ public class MainController implements Initializable {
             int a3039 = 0;
             int a40   = 0;
 
-
             for (int i = 0; i < getNumberOfCandidates(); i++) {
                 // adds the candidates name and calculates the percentage (candidates votes)/total votes
                 // multiplication * 1 to turn into floating to remove the error
@@ -218,14 +217,15 @@ public class MainController implements Initializable {
                 System.out.println(" check age 40  " + a40);
             }
             // makes an Observable list, similar to ArrayList but for FX nodes
-            ObservableList<PieChart.Data> pieChartDataList =
-                    FXCollections.observableArrayList(
-                            // 1.0 to convert to floating point
-                            new PieChart.Data("18 - 20", a1820/(voteList.length - 1.0)),
-                            new PieChart.Data("21 - 24", a2124/(voteList.length - 1.0)),
-                            new PieChart.Data("25 - 29", a2529 /(voteList.length - 1.0)),
-                            new PieChart.Data("30 - 39", a3039/(voteList.length - 1.0)),
-                            new PieChart.Data("40+",     a40 /(voteList.length - 1.0)));
+                            ObservableList<PieChart.Data> pieChartDataList =
+                                    FXCollections.observableArrayList();
+                // if statement to prevent display of 0% data when 0 candidates
+                // 1.0 to convert to floating point
+                if (a1820 > 0) pieChartDataList.add(new PieChart.Data("18 - 20", a1820  / (voteList.length - 1.0)));
+                if (a2124 > 0) pieChartDataList.add(new PieChart.Data("21 - 24", a2124  / (voteList.length - 1.0)));
+                if (a2529 > 0)pieChartDataList.add(new PieChart.Data("25 - 29", a2529   / (voteList.length - 1.0)));
+                if (a3039 > 0) pieChartDataList.add(new PieChart.Data("30 - 39", a3039  / (voteList.length - 1.0)));
+                if (a40   > 0) pieChartDataList.add(new PieChart.Data("40+",      a40   / (voteList.length - 1.0)));
 
             // create a Pie chart to display the age group that voted
             final PieChart chart = new PieChart(pieChartDataList);

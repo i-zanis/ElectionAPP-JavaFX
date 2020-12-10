@@ -18,6 +18,7 @@ public class Main extends Application {
     public static final String ELECTIONPAGE = "FXML/election_page.fxml";
     public static final String UWLLOGO = "packagefiles/MEDIA/uwl_logo.png";
     public static final String PIECHARTICON = "packagefiles/MEDIA/piechart_icon.png";
+    public static final String CSS          = "packagefiles/CSS/style.css";
     public static Candidate[] candidateList = new Candidate[0];
     public static int[] voteList = new int[0];
     
@@ -101,13 +102,17 @@ public class Main extends Application {
         // sets the initial FXML file to be loaded
         Parent root = FXMLLoader.load(getClass().getResource(ELECTIONPAGE));
         // Create a scene and set the initial(root) FXML
-        Scene logInScene = new Scene(root);
+        Scene scene = new Scene(root);
         // Sets the title of the window
         primaryStage.setTitle("UWL Student Election");
+        // Clear any previous CSS to avoid inconsistencies
+        scene.getStylesheets().clear();
+        // Add CSS from separate Style Sheet
+        scene.getStylesheets().add(CSS);
         // Sets the icon of the window in the Taskbar and top window bar
         primaryStage.getIcons().add(new Image(UWLLOGO));
         // Sets the Scene to the Stage
-        primaryStage.setScene(logInScene);
+        primaryStage.setScene(scene);
         // Shows the Stage
         primaryStage.show();
         // makes the window not resizable

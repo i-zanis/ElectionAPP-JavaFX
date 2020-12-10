@@ -1,0 +1,31 @@
+.button-settings {
+	-fx-color-one: #0055a3;
+	-fx-background-color: -fx-color-one;
+	-fx-background-radius: 8, 7, 6;
+	-fx-background-insets: 0, 1, 2;
+	-fx-text-fill: white;
+	-fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
+}
+.button-settings:hover {
+	-fx-color-one: #5070b5;
+	-fx-color-two: #981100;
+	-fx-color-three: #981100;
+}
+.button-settings:armed {
+	-fx-color-one: #235891;
+	-fx-color-two: #235891;
+	-fx-color-three: #235891;
+}
+.radio-button .radio {
+    -fx-border-width: 1px;
+    -fx-border-color: #0055a3;
+    -fx-background-color: white;
+    -fx-background-image: null;
+    -fx-border-radius: 15px;
+    -fx-padding: 4px;
+}
+.text-field {
+	-fx-border-color: #6F4242;
+	-fx-border-width: 0 0 1 0;
+	-fx-background-color: transparent;
+}
