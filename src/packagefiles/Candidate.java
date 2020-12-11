@@ -18,7 +18,6 @@ public class Candidate {
         return numberOfCandidates;
     }
 
-
     private static int numberOfCandidates = 0;
 
     int age1820 = 0;
