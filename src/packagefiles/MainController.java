@@ -191,7 +191,7 @@ public class MainController implements Initializable {
     public void checkAgeGroup(ActionEvent event) throws Exception {
         try {
             // creates a scene and adds it to a group
-            Scene agrGroupPage = new Scene(new Group());
+            Scene ageGroupPage = new Scene(new Group());
             // creates a new window to display the stats
             Stage window = new Stage();
 
@@ -254,14 +254,14 @@ public class MainController implements Initializable {
             }
 
             // adds the chart to the Group
-            ((Group) agrGroupPage.getRoot()).getChildren().add(chart);
-            ((Group) agrGroupPage.getRoot()).getChildren().add(PERCENTAGE);
+            ((Group) ageGroupPage.getRoot()).getChildren().add(chart);
+            ((Group) ageGroupPage.getRoot()).getChildren().add(PERCENTAGE);
             // sets the Scene to the window
-            window.setScene(agrGroupPage);
+            window.setScene(ageGroupPage);
             // applies the preferred icon
             window.getIcons().add(new Image(PIECHARTICON));
             // preferred title atop of the window
-            window.setTitle("Age Groups");
+            window.setTitle("Student statistics");
             // shows the window
             window.show();
             // makes the window not resizable
@@ -270,6 +270,322 @@ public class MainController implements Initializable {
         catch (Exception e) {
             // pinpoints the the location of the error occurrence
             System.out.println("Error occurred while opening the Age Groups page.");
+            e.printStackTrace();
+        }
+    }
+
+    public void checkGenderGroup(ActionEvent event) throws Exception {
+        try {
+            // creates a scene and adds it to a group
+            Scene genderGroupPage = new Scene(new Group());
+            // creates a new window to display the stats
+            Stage window = new Stage();
+
+            // assign an initial value to increment in the loop
+            int genderMale = 0;
+            int genderFemale = 0;
+            int genderOther = 0;
+
+
+            for (int i = 0; i < getNumberOfCandidates(); i++) {
+                // adds the candidates name and calculates the percentage (candidates votes)/total votes
+                // multiplication * 1 to turn into floating to remove the error
+                genderMale += candidateList[i].getGenderMale();
+                genderFemale += candidateList[i].getGenderFemale();
+                genderOther += candidateList[i].getGenderOther();
+            }
+            // makes an Observable list, similar to ArrayList but for FX nodes
+            ObservableList<PieChart.Data> pieChartDataList =
+                    FXCollections.observableArrayList();
+            // if statement to prevent display of 0% data when 0 candidates
+            // 1.0 to convert to floating point
+            if (genderMale > 0) pieChartDataList.add(new PieChart.Data("Male", genderMale  / (voteList.length - 1.0)));
+            if (genderFemale > 0) pieChartDataList.add(new PieChart.Data("Female", genderFemale  / (voteList.length - 1.0)));
+            if (genderOther > 0)pieChartDataList.add(new PieChart.Data("Other", genderOther   / (voteList.length - 1.0)));
+
+
+            // create a Pie chart to display the gender group that voted
+            final PieChart chart = new PieChart(pieChartDataList);
+            chart.setTitle("Gender Groups");
+
+            // creates a label to display the percentage
+            final Label PERCENTAGE = new Label("");
+            PERCENTAGE.setStyle("-fx-font: 35 arial;");
+
+            // create a handler to display the percentage on click
+            for (final PieChart.Data data : chart.getData()) {
+                data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+                        e -> {
+                            double total = 0;
+                            for (PieChart.Data d : chart.getData()) {
+                                total += d.getPieValue();
+                            }
+                            // set coordinates for label
+                            PERCENTAGE.setTranslateX(e.getSceneX());
+                            PERCENTAGE.setTranslateY(e.getSceneY());
+                            // formats text and calculates based on (candidates votes)/total votes
+                            String text = String.format("%.1f%%", data.getPieValue()/total * 100) ;
+                            PERCENTAGE.setText(text);
+                        }
+                );
+            }
+
+            // adds the chart to the Group
+            ((Group) genderGroupPage.getRoot()).getChildren().add(chart);
+            ((Group) genderGroupPage.getRoot()).getChildren().add(PERCENTAGE);
+            // sets the Scene to the window
+            window.setScene(genderGroupPage);
+            // applies the preferred icon
+            window.getIcons().add(new Image(PIECHARTICON));
+            // preferred title atop of the window
+            window.setTitle("Student statistics");
+            // shows the window
+            window.show();
+            // makes the window not resizable
+            window.setResizable(false);
+        }
+        catch (Exception e) {
+            // pinpoints the the location of the error occurrence
+            System.out.println("Error occurred while opening the Gender Groups page.");
+            e.printStackTrace();
+        }
+    }
+
+    public void checkOriginGroup(ActionEvent event) throws Exception {
+        try {
+            // creates a scene and adds it to a group
+            Scene originGroupPage = new Scene(new Group());
+            // creates a new window to display the stats
+            Stage window = new Stage();
+
+            // assign an initial value to increment in the loop
+            int originUK = 0;
+            int originEEA = 0;
+            int originInternational = 0;
+
+            for (int i = 0; i < getNumberOfCandidates(); i++) {
+                // adds the candidates name and calculates the percentage (candidates votes)/total votes
+                // multiplication * 1 to turn into floating to remove the error
+                originUK += candidateList[i].getOriginUK();
+                originEEA += candidateList[i].getOriginEEA();
+                originInternational += candidateList[i].getOriginInternational();
+            }
+            // makes an Observable list, similar to ArrayList but for FX nodes
+            ObservableList<PieChart.Data> pieChartDataList =
+                    FXCollections.observableArrayList();
+            // if statement to prevent display of 0% data when 0 candidates
+            // 1.0 to convert to floating point
+            if (originUK > 0) pieChartDataList.add(new PieChart.Data("UK students", originUK  / (voteList.length - 1.0)));
+            if (originEEA > 0) pieChartDataList.add(new PieChart.Data("EEA students", originEEA  / (voteList.length - 1.0)));
+            if (originInternational > 0)pieChartDataList.add(new PieChart.Data("International students", originInternational   / (voteList.length - 1.0)));
+
+
+            // create a Pie chart to display the origin of group that voted
+            final PieChart chart = new PieChart(pieChartDataList);
+            chart.setTitle("Origin Groups");
+
+            // creates a label to display the percentage
+            final Label PERCENTAGE = new Label("");
+            PERCENTAGE.setStyle("-fx-font: 35 arial;");
+
+            // create a handler to display the percentage on click
+            for (final PieChart.Data data : chart.getData()) {
+                data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+                        e -> {
+                            double total = 0;
+                            for (PieChart.Data d : chart.getData()) {
+                                total += d.getPieValue();
+                            }
+                            // set coordinates for label
+                            PERCENTAGE.setTranslateX(e.getSceneX());
+                            PERCENTAGE.setTranslateY(e.getSceneY());
+                            // formats text and calculates based on (candidates votes)/total votes
+                            String text = String.format("%.1f%%", data.getPieValue()/total * 100) ;
+                            PERCENTAGE.setText(text);
+                        }
+                );
+            }
+
+            // adds the chart to the Group
+            ((Group) originGroupPage.getRoot()).getChildren().add(chart);
+            ((Group) originGroupPage.getRoot()).getChildren().add(PERCENTAGE);
+            // sets the Scene to the window
+            window.setScene(originGroupPage);
+            // applies the preferred icon
+            window.getIcons().add(new Image(PIECHARTICON));
+            // preferred title atop of the window
+            window.setTitle("Student statistics");
+            // shows the window
+            window.show();
+            // makes the window not resizable
+            window.setResizable(false);
+        }
+        catch (Exception e) {
+            // pinpoints the the location of the error occurrence
+            System.out.println("Error occurred while opening the Origin Groups page.");
+            e.printStackTrace();
+        }
+    }
+    public void checkCourseGroup(ActionEvent event) throws Exception {
+        try {
+            // creates a scene and adds it to a group
+            Scene courseGroupPage = new Scene(new Group());
+            // creates a new window to display the stats
+            Stage window = new Stage();
+
+            // assign an initial value to increment in the loop
+            int courseCS = 0;
+            int courseCG = 0;
+            int courseWD = 0;
+            int courseIT = 0;
+            int courseITMB = 0;
+
+            for (int i = 0; i < getNumberOfCandidates(); i++) {
+                // adds the candidates name and calculates the percentage (candidates votes)/total votes
+                // multiplication * 1 to turn into floating to remove the error
+                courseCS += candidateList[i].getCourseCS();
+                courseCG += candidateList[i].getCourseCG();
+                courseWD += candidateList[i].getCourseWD();
+                courseIT += candidateList[i].getCourseIT();
+                courseITMB += candidateList[i].getCourseITMB();
+
+            }
+            // makes an Observable list, similar to ArrayList but for FX nodes
+            ObservableList<PieChart.Data> pieChartDataList =
+                    FXCollections.observableArrayList();
+            // if statement to prevent display of 0% data when 0 candidates
+            // 1.0 to convert to floating point
+            if (courseCS > 0) pieChartDataList.add(new PieChart.Data("Computer Science", courseCS  / (voteList.length - 1.0)));
+            if (courseCG > 0) pieChartDataList.add(new PieChart.Data("Computer Games", courseCG  / (voteList.length - 1.0)));
+            if (courseWD > 0)pieChartDataList.add(new PieChart.Data("Web Development", courseWD   / (voteList.length - 1.0)));
+            if (courseIT > 0)pieChartDataList.add(new PieChart.Data("IT", courseIT   / (voteList.length - 1.0)));
+            if (courseITMB > 0)pieChartDataList.add(new PieChart.Data("ITMB", courseITMB   / (voteList.length - 1.0)));
+
+
+            // create a Pie chart to display the gender group that voted
+            final PieChart chart = new PieChart(pieChartDataList);
+            chart.setTitle("Course groups");
+
+            // creates a label to display the percentage
+            final Label PERCENTAGE = new Label("");
+            PERCENTAGE.setStyle("-fx-font: 35 arial;");
+
+            // create a handler to display the percentage on click
+            for (final PieChart.Data data : chart.getData()) {
+                data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+                        e -> {
+                            double total = 0;
+                            for (PieChart.Data d : chart.getData()) {
+                                total += d.getPieValue();
+                            }
+                            // set coordinates for label
+                            PERCENTAGE.setTranslateX(e.getSceneX());
+                            PERCENTAGE.setTranslateY(e.getSceneY());
+                            // formats text and calculates based on (candidates votes)/total votes
+                            String text = String.format("%.1f%%", data.getPieValue()/total * 100) ;
+                            PERCENTAGE.setText(text);
+                        }
+                );
+            }
+
+            // adds the chart to the Group
+            ((Group) courseGroupPage.getRoot()).getChildren().add(chart);
+            ((Group) courseGroupPage.getRoot()).getChildren().add(PERCENTAGE);
+            // sets the Scene to the window
+            window.setScene(courseGroupPage);
+            // applies the preferred icon
+            window.getIcons().add(new Image(PIECHARTICON));
+            // preferred title atop of the window
+            window.setTitle("Student statistics");
+            // shows the window
+            window.show();
+            // makes the window not resizable
+            window.setResizable(false);
+        }
+        catch (Exception e) {
+            // pinpoints the the location of the error occurrence
+            System.out.println("Error occurred while opening the Course Groups page.");
+            e.printStackTrace();
+        }
+    }
+    public void checkYearGroup(ActionEvent event) throws Exception {
+        try {
+            // creates a scene and adds it to a group
+            Scene yearGroupPage = new Scene(new Group());
+            // creates a new window to display the stats
+            Stage window = new Stage();
+
+            // assign an initial value to increment in the loop
+            int year0 = 0;
+            int year1 = 0;
+            int year2 = 0;
+            int year3 = 0;
+            int year4 = 0;
+
+            for (int i = 0; i < getNumberOfCandidates(); i++) {
+                // adds the candidates name and calculates the percentage (candidates votes)/total votes
+                // multiplication * 1 to turn into floating to remove the error
+                year0 += candidateList[i].getCourseCS();
+                year1 += candidateList[i].getCourseCG();
+                year2 += candidateList[i].getCourseWD();
+                year3 += candidateList[i].getCourseIT();
+                year4 += candidateList[i].getCourseITMB();
+            }
+            // makes an Observable list, similar to ArrayList but for FX nodes
+            ObservableList<PieChart.Data> pieChartDataList =
+                    FXCollections.observableArrayList();
+            // if statement to prevent display of 0% data when 0 candidates
+            // 1.0 to convert to floating point
+            if (year0 > 0) pieChartDataList.add(new PieChart.Data("Foundation Year", year0  / (voteList.length - 1.0)));
+            if (year1 > 0) pieChartDataList.add(new PieChart.Data("Year 1", year1  / (voteList.length - 1.0)));
+            if (year2 > 0)pieChartDataList.add(new PieChart.Data("Year 2", year2   / (voteList.length - 1.0)));
+            if (year3 > 0)pieChartDataList.add(new PieChart.Data("Year 3", year3   / (voteList.length - 1.0)));
+            if (year4 > 0)pieChartDataList.add(new PieChart.Data("Year 4+", year4   / (voteList.length - 1.0)));
+
+
+            // create a Pie chart to display the gender group that voted
+            final PieChart chart = new PieChart(pieChartDataList);
+            chart.setTitle("Year groups");
+
+            // creates a label to display the percentage
+            final Label PERCENTAGE = new Label("");
+            PERCENTAGE.setStyle("-fx-font: 35 arial;");
+
+            // create a handler to display the percentage on click
+            for (final PieChart.Data data : chart.getData()) {
+                data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+                        e -> {
+                            double total = 0;
+                            for (PieChart.Data d : chart.getData()) {
+                                total += d.getPieValue();
+                            }
+                            // set coordinates for label
+                            PERCENTAGE.setTranslateX(e.getSceneX());
+                            PERCENTAGE.setTranslateY(e.getSceneY());
+                            // formats text and calculates based on (candidates votes)/total votes
+                            String text = String.format("%.1f%%", data.getPieValue()/total * 100) ;
+                            PERCENTAGE.setText(text);
+                        }
+                );
+            }
+
+            // adds the chart to the Group
+            ((Group) yearGroupPage.getRoot()).getChildren().add(chart);
+            ((Group) yearGroupPage.getRoot()).getChildren().add(PERCENTAGE);
+            // sets the Scene to the window
+            window.setScene(yearGroupPage);
+            // applies the preferred icon
+            window.getIcons().add(new Image(PIECHARTICON));
+            // preferred title atop of the window
+            window.setTitle("Student statistics");
+            // shows the window
+            window.show();
+            // makes the window not resizable
+            window.setResizable(false);
+        }
+        catch (Exception e) {
+            // pinpoints the the location of the error occurrence
+            System.out.println("Error occurred while opening the Year Groups page.");
             e.printStackTrace();
         }
     }

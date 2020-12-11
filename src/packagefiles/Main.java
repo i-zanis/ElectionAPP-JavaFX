@@ -15,8 +15,9 @@ import java.util.Map;
 // main things to note is that there is no direct manipulation of the tally's number. the votes can only increment by 1.
 public class Main extends Application {
 
+    // place the paths into Strings for cleaner & error free code
     public static final String ELECTIONPAGE = "FXML/election_page.fxml";
-    public static final String UWLLOGO = "packagefiles/MEDIA/uwl_logo.png";
+    public static final String UWLLOGO      = "packagefiles/MEDIA/uwl_logo.png";
     public static final String PIECHARTICON = "packagefiles/MEDIA/piechart_icon.png";
     public static final String CSS          = "packagefiles/CSS/style.css";
     public static Candidate[] candidateList = new Candidate[0];
@@ -30,17 +31,17 @@ public class Main extends Application {
             candidateList[indexOfName].updateStats(age,gender,origin,course,year);
         }
         else {
-            add2ArrayCandidate(new Candidate(name, age, gender, origin, course, year));
-            add2ArrayInt();
+            addCandidate2Array(new Candidate(name, age, gender, origin, course, year));
+            IncrementVoteListSize();
         }
 
     }
 
     /**
-     * Adds one item to the String[]
-     * @param candidate the item to be added
+     * Adds a new candidate to candidateList and increments the size if needed by (length * 2 + 1)
+     * @param candidate the new element to be added
      */
-    public static void add2ArrayCandidate(Candidate candidate) {
+    public static void addCandidate2Array(Candidate candidate) {
         if (getNumberOfCandidates() >= candidateList.length) {
             Candidate[] temp = new Candidate[candidateList.length * 2 + 1]; // +1 to avoid multiplication with size 0
             System.arraycopy(candidateList, 0,temp, 0, candidateList.length);
@@ -49,12 +50,9 @@ public class Main extends Application {
         candidateList[getNumberOfCandidates()] = candidate; // will find the next empty index
     }
     /**
-     * Adds one item to the int[]. This one is different the number of candidates
-     * does not increase as it was increased in the add2ArrayCandidate
-     * @param src Source/original array[]
-     * @param newValue the item to be added
+     * Increments the size of voteList by (length * 2 + 1) to match the size of the candidateList
      */
-    public static void add2ArrayInt() {
+    public static void IncrementVoteListSize() {
         if (getNumberOfCandidates() >= voteList.length) {
             int[] temp = new int[voteList.length * 2 + 1]; // +1 to avoid multiplication with size 0
             System.arraycopy(voteList, 0,temp, 0, voteList.length);

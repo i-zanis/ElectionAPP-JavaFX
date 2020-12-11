@@ -117,11 +117,11 @@
       </ImageView>
       <HBox layoutX="62.0" layoutY="474.0" prefHeight="100.0" prefWidth="519.0" spacing="2.0">
          <children>
-            <Button fx:id="ageGroupButton11" mnemonicParsing="false" onAction="#checkAgeGroup" prefHeight="25.0" prefWidth="94.0" styleClass="button-settings" text="Age" />
-            <Button fx:id="ageGroupButton2" mnemonicParsing="false" onAction="#checkAgeGroup" prefHeight="25.0" prefWidth="94.0" styleClass="button-settings" text="Gender" />
-            <Button fx:id="ageGroupButton" mnemonicParsing="false" onAction="#checkAgeGroup" prefHeight="25.0" prefWidth="94.0" styleClass="button-settings" text="Origin" />
-            <Button fx:id="ageGroupButton1" mnemonicParsing="false" onAction="#checkAgeGroup" prefHeight="25.0" prefWidth="94.0" styleClass="button-settings" text="Course" />
-            <Button fx:id="ageGroupButton21" mnemonicParsing="false" onAction="#checkAgeGroup" prefHeight="25.0" prefWidth="94.0" styleClass="button-settings" text="Year" />
+            <Button fx:id="ageGroupButton" mnemonicParsing="false" onAction="#checkAgeGroup" prefHeight="25.0" prefWidth="94.0" styleClass="button-settings" text="Age" />
+            <Button fx:id="genderGroupButton" mnemonicParsing="false" onAction="#checkGenderGroup" prefHeight="25.0" prefWidth="94.0" styleClass="button-settings" text="Gender" />
+            <Button fx:id="originGroupButton" mnemonicParsing="false" onAction="#checkOriginGroup" prefHeight="25.0" prefWidth="94.0" styleClass="button-settings" text="Origin" />
+            <Button fx:id="courseGroupButton" mnemonicParsing="false" onAction="#checkCourseGroup" prefHeight="25.0" prefWidth="94.0" styleClass="button-settings" text="Course" />
+            <Button fx:id="yearGroupButton" mnemonicParsing="false" onAction="#checkYearGroup" prefHeight="25.0" prefWidth="94.0" styleClass="button-settings" text="Year" />
          </children>
       </HBox>
    </children>
