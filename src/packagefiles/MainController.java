@@ -515,11 +515,11 @@ public class MainController implements Initializable {
             for (int i = 0; i < getNumberOfCandidates(); i++) {
                 // adds the candidates name and calculates the percentage (candidates votes)/total votes
                 // multiplication * 1 to turn into floating to remove the error
-                year0 += candidateList[i].getCourseCS();
-                year1 += candidateList[i].getCourseCG();
-                year2 += candidateList[i].getCourseWD();
-                year3 += candidateList[i].getCourseIT();
-                year4 += candidateList[i].getCourseITMB();
+                year0 += candidateList[i].getYear0();
+                year1 += candidateList[i].getYear1();
+                year2 += candidateList[i].getYear2();
+                year3 += candidateList[i].getYear3();
+                year4 += candidateList[i].getYear4();
             }
             // makes an Observable list, similar to ArrayList but for FX nodes
             ObservableList<PieChart.Data> pieChartDataList =
