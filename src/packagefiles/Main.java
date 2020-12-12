@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import static java.util.Collections.swap;
 import static packagefiles.Candidate.getNumberOfCandidates;
 import static packagefiles.Candidate.incrementNumberOfCandidates;
 
@@ -76,6 +77,7 @@ public class Main extends Application {
 
     }
 
+
     /**
      * Finds if the candidate exists in the Array returns -1 if not matched
      *
@@ -88,7 +90,51 @@ public class Main extends Application {
         }
         return -1;
     }
-    
+
+    /**
+     * Sorts candidateList & voteList[] based on voteList[] highest integer in descending order
+     */
+    public static void sort() {
+        int N = getNumberOfCandidates();
+        for (int i = 0; i < N; i++) {
+            int max = i;
+            for (int j = i + 1; j < N; j++)  {
+                if (voteList[j] > voteList[max]) max = j;
+            }
+            exchange(voteList, i, max);
+            exchange(candidateList,i,max);
+            }
+        System.out.println("Candidates:");
+        for (int i = 0; i < N; i++) {
+            System.out.println(candidateList[i].getName() + ": " + voteList[i] + " vote(s).");
+        }
+    }
+
+    /**
+     * Exchange variables method for the Int[] arrays
+     * @param array Int[] array
+     * @param i index
+     * @param j index
+     */
+    static void exchange(int[] array, int i, int j) {
+        int t = array[i];
+        array[i] = array[j];
+        array[j] = t;
+    }
+
+    /**
+     * Overloaded Exchange method for Candidate[] arrays
+     * @param array Candidate[] array
+     * @param i index
+     * @param j index
+     */
+     static void exchange(Candidate[] array, int i, int j) {
+        Candidate t = array[i];
+        array[i] = array[j];
+        array[j] = t;
+    }
+
+
     public static void main(String[] args) {
         launch(args);
     }

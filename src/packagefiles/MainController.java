@@ -99,9 +99,18 @@ public class MainController implements Initializable {
      * a pie chart with the candidates.
      *
      * @param event
-     * @throws Exception
      */
     public void checkResults(ActionEvent event) throws Exception {
+        for (int i = 0; i < candidateList.length; i++) {
+            System.out.println("Name: " + candidateList[i].getName());
+            System.out.println("Votes: " + voteList[i]);
+        }
+        sort();
+
+        for (int i = 0; i < candidateList.length; i++) {
+            System.out.println("Name: " + candidateList[i].getName());
+            System.out.println("Votes: " + voteList[i]);
+        }
         try {
             // creates a scene and adds it to a group
             Scene resultsPage = new Scene(new Group());
