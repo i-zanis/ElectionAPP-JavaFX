@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.sql.SQLOutput;
+
 import static java.util.Collections.swap;
 import static packagefiles.Candidate.getNumberOfCandidates;
 import static packagefiles.Candidate.incrementNumberOfCandidates;
@@ -16,11 +18,11 @@ public class Main extends Application {
 
     // place the paths into Strings for cleaner & error free code
     public static final String ELECTIONPAGE = "FXML/election_page.fxml";
-    public static final String UWLLOGO = "packagefiles/MEDIA/uwl_logo.png";
+    public static final String UWLLOGO      = "packagefiles/MEDIA/uwl_logo.png";
     public static final String PIECHARTICON = "packagefiles/MEDIA/piechart_icon.png";
-    public static final String CSS = "packagefiles/CSS/style.css";
+    public static final String CSS          = "packagefiles/CSS/style.css";
     public static Candidate[] candidateList = new Candidate[0];
-    public static int[] voteList = new int[0];
+    public static int[] voteList            = new int[0];
 
     /**
      * Adds a new candidate object in candidateList or increments existing candidate vote count.
@@ -74,7 +76,6 @@ public class Main extends Application {
         }
         // will find the next empty index and increment it for next addition
         voteList[incrementNumberOfCandidates()] = 1;
-
     }
 
 
@@ -104,9 +105,12 @@ public class Main extends Application {
             exchange(voteList, i, max);
             exchange(candidateList,i,max);
             }
-        System.out.println("Candidates:");
+
+        System.out.printf("\n%16s\n","[CANDIDATES]");
+        System.out.println(String.format("%10s","").replace("","\u2013"));
+        System.out.println();
         for (int i = 0; i < N; i++) {
-            System.out.println(candidateList[i].getName() + ": " + voteList[i] + " vote(s).");
+            System.out.printf("%-9s %3s vote(s).\n",candidateList[i].getName(), voteList[i]);
         }
     }
 

@@ -43,6 +43,12 @@ public class MainController implements Initializable {
     public TextField inputField;
     public Button voteButton;
     public Button resultsButton;
+    public CheckBox winnerStats;
+    public Button ageGroupButton;
+    public Button genderGroupButton;
+    public Button originGroupButton;
+    public Button courseGroupButton;
+    public Button yearGroupButton;
     ToggleGroup ageGroup = new ToggleGroup();
     ToggleGroup genderGroup = new ToggleGroup();
     ToggleGroup originGroup = new ToggleGroup();
@@ -80,7 +86,11 @@ public class MainController implements Initializable {
         year4.setToggleGroup(yearGroup);
     }
 
-
+    /**
+     * Adds a new Candidate or adds a vote for that candidate if that name exists
+     * The method takes the names of the Radio buttons that have been selected and saves them into a String
+     * to update the values in the Candidate object data fields.
+     */
     public void vote(ActionEvent event) throws Exception {
         String name = inputField.getText();
         String age = ((RadioButton) ageGroup.getSelectedToggle()).getId();
@@ -89,28 +99,20 @@ public class MainController implements Initializable {
         String course = ((RadioButton) courseGroup.getSelectedToggle()).getId();
         String year = ((RadioButton) yearGroup.getSelectedToggle()).getId();
         // need to fix if all properties are selected
-        System.out.println(name + age + gender + origin + course + year);
+        System.out.println(name + " has gained one vote.");
         addData(name, age, gender, origin, course, year);
+        // turns on resultsButton visibility when a second candidate is registered
+        if (getNumberOfCandidates() > 1) resultsButton.setVisible(true);
     }
-
 
     /**
      * Action event for checkResults button. Calculates the votes saved in the candidateList/voteList and displays
      * a pie chart with the candidates.
      *
-     * @param event
      */
     public void checkResults(ActionEvent event) throws Exception {
-        for (int i = 0; i < candidateList.length; i++) {
-            System.out.println("Name: " + candidateList[i].getName());
-            System.out.println("Votes: " + voteList[i]);
-        }
+        // sorts the candidates based on votes from voteList
         sort();
-
-        for (int i = 0; i < candidateList.length; i++) {
-            System.out.println("Name: " + candidateList[i].getName());
-            System.out.println("Votes: " + voteList[i]);
-        }
         try {
             // creates a scene and adds it to a group
             Scene resultsPage = new Scene(new Group());
@@ -149,7 +151,8 @@ public class MainController implements Initializable {
                         }
                 );
             }
-
+            // shows the hidden buttons
+            showButtons();
             // adds the chart to the Group
             ((Group) resultsPage.getRoot()).getChildren().add(chart);
             ((Group) resultsPage.getRoot()).getChildren().add(PERCENTAGE);
@@ -163,24 +166,15 @@ public class MainController implements Initializable {
             window.show();
             // makes the window not resizable
             window.setResizable(false);
-
-
-            System.out.println("2124 " + candidateList[0].getAge1820());
-            System.out.println("2124 " + candidateList[0].getAge2124());
-
-            System.out.println("25 29 " + candidateList[0].getAge2529());
-
-            System.out.println("30 39 " + candidateList[0].getAge3039());
-
-            System.out.println("40 " + candidateList[0].getAge40());
-
         } catch (Exception e) {
             // pinpoints the the location of the error occurrence
             System.out.println("Error occurred while opening the final results page.");
             e.printStackTrace();
         }
     }
-
+    /**
+     * Action event for ageGroupButton. Displays age groups in a new window with a pie chart
+     */
     public void checkAgeGroup(ActionEvent event) throws Exception {
         try {
             // creates a scene and adds it to a group
@@ -193,21 +187,19 @@ public class MainController implements Initializable {
             int a2124 = 0;
             int a2529 = 0;
             int a3039 = 0;
-            int a40 = 0;
+            int a40   = 0;
 
-            for (int i = 0; i < getNumberOfCandidates(); i++) {
+            int iterations = getNumberOfCandidates();
+            if (winnerStats.isSelected()) iterations = 1;
+            for (int i = 0; i < iterations; i++) {
                 // adds the candidates name and calculates the percentage (candidates votes)/total votes
                 // multiplication * 1 to turn into floating to remove the error
                 a1820 += candidateList[i].getAge1820();
-                System.out.println(" check age 18 20 " + a1820);
                 a2124 += candidateList[i].getAge2124();
-                System.out.println(" check age 21 23 " + a2124);
                 a2529 += candidateList[i].getAge2529();
-                System.out.println(" check age 25 29 " + a2529);
                 a3039 += candidateList[i].getAge3039();
-                System.out.println(" check age 30 39 " + a3039);
-                a40 += candidateList[i].getAge40();
-                System.out.println(" check age 40  " + a40);
+                a40   += candidateList[i].getAge40();
+
             }
             // makes an Observable list, similar to ArrayList but for FX nodes
             ObservableList<PieChart.Data> pieChartDataList =
@@ -218,7 +210,7 @@ public class MainController implements Initializable {
             if (a2124 > 0) pieChartDataList.add(new PieChart.Data("21 - 24", a2124 / (voteList.length - 1.0)));
             if (a2529 > 0) pieChartDataList.add(new PieChart.Data("25 - 29", a2529 / (voteList.length - 1.0)));
             if (a3039 > 0) pieChartDataList.add(new PieChart.Data("30 - 39", a3039 / (voteList.length - 1.0)));
-            if (a40 > 0) pieChartDataList.add(new PieChart.Data("40+", a40 / (voteList.length - 1.0)));
+            if (a40 >   0) pieChartDataList.add(new PieChart.Data("40+", a40 / (voteList.length - 1.0)));
 
             // create a Pie chart to display the age group that voted
             final PieChart chart = new PieChart(pieChartDataList);
@@ -265,7 +257,9 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Action event for genderGroupButton. Displays gender groups in a new window with a pie chart
+     */
     public void checkGenderGroup(ActionEvent event) throws Exception {
         try {
             // creates a scene and adds it to a group
@@ -279,7 +273,9 @@ public class MainController implements Initializable {
             int genderOther = 0;
 
 
-            for (int i = 0; i < getNumberOfCandidates(); i++) {
+            int iterations = getNumberOfCandidates();
+            if (winnerStats.isSelected()) iterations = 1;
+            for (int i = 0; i < iterations; i++) {
                 // adds the candidates name and calculates the percentage (candidates votes)/total votes
                 // multiplication * 1 to turn into floating to remove the error
                 genderMale += candidateList[i].getGenderMale();
@@ -343,7 +339,9 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Action event for originGroupButton. Displays origin groups in a new window with a pie chart
+     */
     public void checkOriginGroup(ActionEvent event) throws Exception {
         try {
             // creates a scene and adds it to a group
@@ -356,7 +354,9 @@ public class MainController implements Initializable {
             int originEEA = 0;
             int originInternational = 0;
 
-            for (int i = 0; i < getNumberOfCandidates(); i++) {
+            int iterations = getNumberOfCandidates();
+            if (winnerStats.isSelected()) iterations = 1;
+            for (int i = 0; i < iterations; i++) {
                 // adds the candidates name and calculates the percentage (candidates votes)/total votes
                 // multiplication * 1 to turn into floating to remove the error
                 originUK += candidateList[i].getOriginUK();
@@ -421,7 +421,9 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Action event for courseGroupButton. Displays course groups in a new window with a pie chart
+     */
     public void checkCourseGroup(ActionEvent event) throws Exception {
         try {
             // creates a scene and adds it to a group
@@ -436,7 +438,9 @@ public class MainController implements Initializable {
             int courseIT = 0;
             int courseITMB = 0;
 
-            for (int i = 0; i < getNumberOfCandidates(); i++) {
+            int iterations = getNumberOfCandidates();
+            if (winnerStats.isSelected()) iterations = 1;
+            for (int i = 0; i < iterations; i++) {
                 // adds the candidates name and calculates the percentage (candidates votes)/total votes
                 // multiplication * 1 to turn into floating to remove the error
                 courseCS += candidateList[i].getCourseCS();
@@ -506,7 +510,9 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Action event for yearGroupButton. Displays year groups in a new window with a pie chart
+     */
     public void checkYearGroup(ActionEvent event) throws Exception {
         try {
             // creates a scene and adds it to a group
@@ -521,7 +527,9 @@ public class MainController implements Initializable {
             int year3 = 0;
             int year4 = 0;
 
-            for (int i = 0; i < getNumberOfCandidates(); i++) {
+            int iterations = getNumberOfCandidates();
+            if (winnerStats.isSelected()) iterations = 1;
+            for (int i = 0; i < iterations; i++) {
                 // adds the candidates name and calculates the percentage (candidates votes)/total votes
                 // multiplication * 1 to turn into floating to remove the error
                 year0 += candidateList[i].getYear0();
@@ -586,6 +594,19 @@ public class MainController implements Initializable {
             System.out.println("Error occurred while opening the Year Groups page.");
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Turns on the visibility of winnerStats, agrGroupButton, genderGroupButton, originGroupButton courseGroupButton,
+     * yearGroupButton after two candidates have been registered
+     */
+    public void showButtons() {
+        winnerStats.setVisible(true);
+        ageGroupButton.setVisible(true);
+        genderGroupButton.setVisible(true);
+        originGroupButton.setVisible(true);
+        courseGroupButton.setVisible(true);
+        yearGroupButton.setVisible(true);
     }
 }
 
