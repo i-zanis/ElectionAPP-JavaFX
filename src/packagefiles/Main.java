@@ -6,13 +6,24 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
-import java.sql.SQLOutput;
-
-import static java.util.Collections.swap;
 import static packagefiles.Candidate.getNumberOfCandidates;
 import static packagefiles.Candidate.incrementNumberOfCandidates;
 
+/**
+ * Basic Election Application with Graphical User Interface. It allows the user to input candidate names in a text field
+ * and register them by pressing the Vote button. If the name exists then it increments the vote count by 1.
+ * The system collects user data that can be displayed to find more information about the users who voted
+ * (eg. year/course). By ticking the checkbox you can exclusively analyze and isolate the groups that voted the
+ * candidate with most votes. Clicking on the pie chart also displays the percentage of the data.
+ *
+ * Made in Java 14.0.2.
+ * If the Program does not work please download "javafx-sdk-11.0" and add all the jar-files in
+ * Javafx-sdk-11.0.2\lib\ to the global library.
+ *
+ * VM options --module-path %java path% --add-modules javafx.controls,javafx.fxml
+ * If there is an error with the root file FXML please place the above VM options as well.
+ * Screenshot provided in MEDIA Folder.
+ */
 // To note is that there is no direct manipulation of the tally's number. the votes can only increment by 1.
 public class Main extends Application {
 
@@ -23,6 +34,7 @@ public class Main extends Application {
     public static final String CSS          = "packagefiles/CSS/style.css";
     public static Candidate[] candidateList = new Candidate[0];
     public static int[] voteList            = new int[0];
+    public static final String EMPTYSTRING  = "";
 
     /**
      * Adds a new candidate object in candidateList or increments existing candidate vote count.
@@ -30,11 +42,11 @@ public class Main extends Application {
      * Course and Year. The data is taken from error free radio buttons with a default choice.
      *
      * @param name   the name of the candidate
-     * @param age    radio button choice
-     * @param gender radio button choice
-     * @param origin radio button choice
-     * @param course radio button choice
-     * @param year   radio button choice
+     * @param age    taken by radio button choice
+     * @param gender taken by radio button choice
+     * @param origin taken by radio button choice
+     * @param course taken by radio button choice
+     * @param year   taken by radio button choice
      */
     public static void addData(String name, String age, String gender, String origin, String course, String year) {
         // saves the index of the candidate if found
@@ -58,11 +70,11 @@ public class Main extends Application {
      */
     public static void addCandidate2Array(Candidate candidate) {
         if (getNumberOfCandidates() >= candidateList.length) {
-            Candidate[] temp = new Candidate[candidateList.length * 2 + 1]; // +1 to avoid multiplication with size 0
+            Candidate[] temp = new Candidate[candidateList.length + 1]; // +1 to avoid multiplication with size 0
             System.arraycopy(candidateList, 0, temp, 0, candidateList.length);
             candidateList = temp;
         }
-        candidateList[getNumberOfCandidates()] = candidate; // will find the next empty index
+        candidateList[getNumberOfCandidates()] = candidate; // finds the next EMPTYSTRING index
     }
 
     /**
@@ -70,11 +82,11 @@ public class Main extends Application {
      */
     public static void IncrementVoteListSize() {
         if (getNumberOfCandidates() >= voteList.length) {
-            int[] temp = new int[voteList.length * 2 + 1]; // +1 to avoid multiplication with size 0
+            int[] temp = new int[voteList.length + 1]; // +1 to avoid multiplication with size 0
             System.arraycopy(voteList, 0, temp, 0, voteList.length);
             voteList = temp;
         }
-        // will find the next empty index and increment it for next addition
+        // finds the next EMPTYSTRING index and increment numberOfCandidates for next addition
         voteList[incrementNumberOfCandidates()] = 1;
     }
 
@@ -105,12 +117,13 @@ public class Main extends Application {
             exchange(voteList, i, max);
             exchange(candidateList,i,max);
             }
-
+        // formats the string and attempts to approximately place a CANDIDATES label in the middle if the name is < 9 chars
         System.out.printf("\n%16s\n","[CANDIDATES]");
-        System.out.println(String.format("%10s","").replace("","\u2013"));
+        // creates a line separator with hyphens
+        System.out.print(String.format("%10s",EMPTYSTRING).replace(EMPTYSTRING,"\u2013"));
         System.out.println();
         for (int i = 0; i < N; i++) {
-            System.out.printf("%-9s %3s vote(s).\n",candidateList[i].getName(), voteList[i]);
+            System.out.printf("%-9s %3s vote(s)\n",candidateList[i].getName(), voteList[i]);
         }
     }
 

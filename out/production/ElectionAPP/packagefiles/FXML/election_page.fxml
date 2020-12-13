@@ -51,7 +51,7 @@
             </Label>
             <VBox prefHeight="200.0" prefWidth="188.0" spacing="6.0">
                <children>
-                  <TextField fx:id="inputField" prefHeight="32.0" prefWidth="188.0" />
+                  <TextField fx:id="inputField" prefHeight="32.0" prefWidth="188.0" promptText="Candidate Name" />
                   <Button fx:id="voteButton" mnemonicParsing="false" onAction="#vote" prefHeight="32.0" prefWidth="188.0" styleClass="button-settings" text="Vote">
                      <font>
                         <Font name="System Bold" size="18.0" />
@@ -125,6 +125,9 @@
             <Button fx:id="yearGroupButton" mnemonicParsing="false" onAction="#checkYearGroup" prefHeight="25.0" prefWidth="94.0" styleClass="button-settings" text="Year" visible="false" />
          </children>
       </HBox>
-      <CheckBox fx:id="winnerStats" layoutX="449.0" layoutY="449.0" mnemonicParsing="false" text="Winner stats" visible="false" />
+      <CheckBox fx:id="winnerStats" layoutX="447.0" layoutY="501.0" maxHeight="17.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="118.0" text="Winner stats" visible="false">
+         <font>
+            <Font size="10.0" />
+         </font></CheckBox>
    </children>
 </Pane>

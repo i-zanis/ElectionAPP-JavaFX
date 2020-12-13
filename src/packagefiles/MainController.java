@@ -10,6 +10,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -92,17 +93,31 @@ public class MainController implements Initializable {
      * to update the values in the Candidate object data fields.
      */
     public void vote(ActionEvent event) throws Exception {
+        // gets the input from the textField
         String name = inputField.getText();
-        String age = ((RadioButton) ageGroup.getSelectedToggle()).getId();
-        String gender = ((RadioButton) genderGroup.getSelectedToggle()).getId();
-        String origin = ((RadioButton) originGroup.getSelectedToggle()).getId();
-        String course = ((RadioButton) courseGroup.getSelectedToggle()).getId();
-        String year = ((RadioButton) yearGroup.getSelectedToggle()).getId();
-        // need to fix if all properties are selected
-        System.out.println(name + " has gained one vote.");
-        addData(name, age, gender, origin, course, year);
-        // turns on resultsButton visibility when a second candidate is registered
-        if (getNumberOfCandidates() > 1) resultsButton.setVisible(true);
+        // capitalizes the first letter
+        if (!name.equals(EMPTYSTRING)) name = name.substring(0, 1).toUpperCase() + name.substring(1);
+        // checks if inputField is empty or has the error message. If empty posts the error message, requests focus
+        // and selects all text to be erased on next type
+        if (name.equals(EMPTYSTRING) || name.equals("Please Enter a name")) {
+            inputField.setText("Please Enter a name");
+            inputField.requestFocus();
+            inputField.selectAll();
+        }
+        else {
+            String age = ((RadioButton) ageGroup.getSelectedToggle()).getId();
+            String gender = ((RadioButton) genderGroup.getSelectedToggle()).getId();
+            String origin = ((RadioButton) originGroup.getSelectedToggle()).getId();
+            String course = ((RadioButton) courseGroup.getSelectedToggle()).getId();
+            String year = ((RadioButton) yearGroup.getSelectedToggle()).getId();
+            // need to fix if all properties are selected
+            System.out.printf("%s has gained one vote.\n", name);
+            addData(name, age, gender, origin, course, year);
+            // turns on resultsButton visibility when a second candidate is registered
+            if (getNumberOfCandidates() > 1) resultsButton.setVisible(true);
+        }
+        // hides all buttons when voteButton is pressed, they are revealed when resultsButton is pressed
+        hideButtons();
     }
 
     /**
@@ -131,7 +146,7 @@ public class MainController implements Initializable {
             chart.setTitle("Votes");
 
             // creates a label to display the percentage
-            final Label PERCENTAGE = new Label("");
+            final Label PERCENTAGE = new Label(EMPTYSTRING);
             PERCENTAGE.setStyle("-fx-font: 35 arial;");
 
             // create a handler to display the percentage on click
@@ -217,7 +232,7 @@ public class MainController implements Initializable {
             chart.setTitle("Age Groups");
 
             // creates a label to display the percentage
-            final Label PERCENTAGE = new Label("");
+            final Label PERCENTAGE = new Label(EMPTYSTRING);
             PERCENTAGE.setStyle("-fx-font: 35 arial;");
 
             // create a handler to display the percentage on click
@@ -299,7 +314,7 @@ public class MainController implements Initializable {
             chart.setTitle("Gender Groups");
 
             // creates a label to display the percentage
-            final Label PERCENTAGE = new Label("");
+            final Label PERCENTAGE = new Label(EMPTYSTRING);
             PERCENTAGE.setStyle("-fx-font: 35 arial;");
 
             // create a handler to display the percentage on click
@@ -381,7 +396,7 @@ public class MainController implements Initializable {
             chart.setTitle("Origin Groups");
 
             // creates a label to display the percentage
-            final Label PERCENTAGE = new Label("");
+            final Label PERCENTAGE = new Label(EMPTYSTRING);
             PERCENTAGE.setStyle("-fx-font: 35 arial;");
 
             // create a handler to display the percentage on click
@@ -470,7 +485,7 @@ public class MainController implements Initializable {
             chart.setTitle("Course groups");
 
             // creates a label to display the percentage
-            final Label PERCENTAGE = new Label("");
+            final Label PERCENTAGE = new Label(EMPTYSTRING);
             PERCENTAGE.setStyle("-fx-font: 35 arial;");
 
             // create a handler to display the percentage on click
@@ -555,7 +570,7 @@ public class MainController implements Initializable {
             chart.setTitle("Year groups");
 
             // creates a label to display the percentage
-            final Label PERCENTAGE = new Label("");
+            final Label PERCENTAGE = new Label(EMPTYSTRING);
             PERCENTAGE.setStyle("-fx-font: 35 arial;");
 
             // create a handler to display the percentage on click
@@ -607,6 +622,19 @@ public class MainController implements Initializable {
         originGroupButton.setVisible(true);
         courseGroupButton.setVisible(true);
         yearGroupButton.setVisible(true);
+    }
+
+    /**
+     * Turns off the visibility of winnerStats, agrGroupButton, genderGroupButton, originGroupButton courseGroupButton,
+     * yearGroupButton when the vote button because the user has to press checkResults first
+     */
+    public void hideButtons() {
+        winnerStats.setVisible(false);
+        ageGroupButton.setVisible(false);
+        genderGroupButton.setVisible(false);
+        originGroupButton.setVisible(false);
+        courseGroupButton.setVisible(false);
+        yearGroupButton.setVisible(false);
     }
 }
 

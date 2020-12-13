@@ -25,7 +25,18 @@
     -fx-padding: 4px;
 }
 .text-field {
-	-fx-border-color: #6F4242;
+	-fx-border-color: #0055a3;
 	-fx-border-width: 0 0 1 0;
 	-fx-background-color: transparent;
+}
+.check-box .box {
+	-fx-background-color: white;
+	-fx-border-color: #0055a3;
+	-fx-border-radius: 3px;
+}
+.check-box:selected .mark {
+	-fx-background-color: white;
+}
+.check-box:selected .box {
+	-fx-background-color: #0055a3;
 }
