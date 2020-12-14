@@ -74,7 +74,7 @@ public class Main extends Application {
             System.arraycopy(candidateList, 0, temp, 0, candidateList.length);
             candidateList = temp;
         }
-        candidateList[getNumberOfCandidates()] = candidate; // finds the next EMPTYSTRING index
+        candidateList[getNumberOfCandidates()] = candidate; // finds the next empty index
     }
 
     /**
@@ -86,7 +86,7 @@ public class Main extends Application {
             System.arraycopy(voteList, 0, temp, 0, voteList.length);
             voteList = temp;
         }
-        // finds the next EMPTYSTRING index and increment numberOfCandidates for next addition
+        // finds the next empty index and increment numberOfCandidates for next addition
         voteList[incrementNumberOfCandidates()] = 1;
     }
 

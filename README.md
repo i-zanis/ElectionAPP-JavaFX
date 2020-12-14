@@ -1,5 +1,5 @@
-# ElectionAPP
-Basic Election Application with Graphical User Interface. It allows the user to input candidate names in a text field
+#ElectionAPP
+Basic Election Application with Graphical User Interface made in JavaFX. It allows the user to input candidate names in a text field
 and register them by pressing the Vote button. If the name exists then it increments the vote count by 1.
 The system collects user data that can be displayed to find more information about the users who voted
 (eg. year/course). By ticking the checkbox you can exclusively isolate and analyze the groups that voted the
