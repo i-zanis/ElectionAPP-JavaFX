@@ -10,6 +10,7 @@ and register them by pressing the Vote button. If the name exists then it increm
 The system collects user data that can be displayed to find more information about the users who voted
 (eg. year/course). By ticking the checkbox you can exclusively isolate and analyze the groups that voted the
 candidate with most votes. Clicking on the pie chart also displays the percentage of the data.
+
 ![Screenshot](src/packagefiles/MEDIA/application_screenshot.png)
 
 
