@@ -4,6 +4,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,61 +14,22 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="packagefiles.MainController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="packagefiles.MainController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="532.0" stroke="#0055a3" strokeType="INSIDE" strokeWidth="10.0" width="599.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="730.0" stroke="#0055a3" strokeType="INSIDE" strokeWidth="10.0" width="599.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="70.0" layoutX="-12.0" layoutY="5.0" stroke="#0055a3" strokeType="INSIDE" strokeWidth="2.0" width="614.0" />
       <Label layoutX="105.0" layoutY="15.0" prefHeight="32.0" prefWidth="392.0" text="Please enter your details">
          <font>
             <Font name="System Bold" size="34.0" />
          </font>
       </Label>
-      <VBox alignment="TOP_CENTER" layoutX="206.0" layoutY="79.0" prefHeight="446.0" prefWidth="188.0" spacing="27.0">
+      <VBox alignment="TOP_CENTER" layoutX="19.0" layoutY="79.0" prefHeight="411.0" prefWidth="564.0" spacing="10.0">
          <children>
             <Label text="AGE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label text="GENDER">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="25.0" prefWidth="128.0" text="ORIGIN">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <Label text="COURSE">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <Label text="YEAR OF STUDY">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <VBox prefHeight="200.0" prefWidth="188.0" spacing="6.0">
-               <children>
-                  <TextField fx:id="inputField" prefHeight="32.0" prefWidth="188.0" promptText="Candidate Name" />
-                  <Button fx:id="voteButton" mnemonicParsing="false" onAction="#vote" prefHeight="32.0" prefWidth="188.0" styleClass="button-settings" text="Vote">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="resultsButton" mnemonicParsing="false" onAction="#checkResults" prefHeight="32.0" prefWidth="188.0" styleClass="button-settings" text="Check Results" visible="false">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Button>
-               </children>
-            </VBox>
-         </children>
-      </VBox>
-      <VBox alignment="TOP_CENTER" layoutX="4.0" layoutY="99.0" prefHeight="245.0" prefWidth="593.0" spacing="27.0">
-         <children>
             <HBox alignment="CENTER" prefHeight="25.0" prefWidth="575.0" spacing="15.0">
                <children>
                   <RadioButton fx:id="age1820" mnemonicParsing="false" selected="true" text="18-20" />
@@ -77,6 +39,12 @@
                   <RadioButton fx:id="age40" mnemonicParsing="false" text="40+" />
                </children>
             </HBox>
+            <Separator prefWidth="200.0" />
+            <Label text="GENDER">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
             <HBox alignment="CENTER" prefHeight="25.0" prefWidth="575.0" spacing="15.0">
                <children>
                   <RadioButton fx:id="genderMale" mnemonicParsing="false" selected="true" text="Male" />
@@ -84,6 +52,12 @@
                   <RadioButton fx:id="genderOther" mnemonicParsing="false" text="Other" />
                </children>
             </HBox>
+            <Separator prefWidth="200.0" />
+            <Label alignment="CENTER" prefHeight="25.0" prefWidth="128.0" text="ORIGIN">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
             <HBox alignment="CENTER" prefHeight="25.0" prefWidth="575.0" spacing="15.0">
                <children>
                   <RadioButton fx:id="originUK" mnemonicParsing="false" selected="true" text="UK" />
@@ -91,6 +65,12 @@
                   <RadioButton fx:id="originInternational" mnemonicParsing="false" text="International" />
                </children>
             </HBox>
+            <Separator prefWidth="200.0" />
+            <Label text="COURSE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
             <HBox alignment="CENTER" prefHeight="25.0" prefWidth="539.0" spacing="15.0">
                <children>
                   <RadioButton fx:id="courseCS" mnemonicParsing="false" selected="true" text="Computer Science" />
@@ -100,6 +80,12 @@
                   <RadioButton fx:id="courseITMB" mnemonicParsing="false" text="ITMB" />
                </children>
             </HBox>
+            <Separator prefWidth="200.0" />
+            <Label text="YEAR OF STUDY">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
             <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="575.0" spacing="15.0">
                <children>
                   <RadioButton fx:id="year0" mnemonicParsing="false" text="0" />
@@ -109,6 +95,7 @@
                   <RadioButton fx:id="year4" mnemonicParsing="false" text="4+" />
                </children>
             </HBox>
+            <Separator prefWidth="200.0" />
          </children>
       </VBox>
       <ImageView fitHeight="56.0" fitWidth="55.0" layoutX="14.0" layoutY="12.0">
@@ -116,7 +103,22 @@
             <Image url="@../MEDIA/uwl_logo.png" />
          </image>
       </ImageView>
-      <HBox layoutX="62.0" layoutY="474.0" prefHeight="100.0" prefWidth="519.0" spacing="2.0">
+      <VBox layoutX="208.0" layoutY="501.0" prefHeight="109.0" prefWidth="188.0" spacing="10.0">
+         <children>
+            <TextField fx:id="inputField" prefHeight="32.0" prefWidth="188.0" promptText="Candidate Name" />
+            <Button fx:id="voteButton" mnemonicParsing="false" onAction="#vote" prefHeight="32.0" prefWidth="188.0" styleClass="button-settings" text="Vote">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="resultsButton" mnemonicParsing="false" onAction="#checkResults" prefHeight="32.0" prefWidth="188.0" styleClass="button-settings" text="Check Results" visible="false">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <HBox layoutX="69.0" layoutY="653.0" prefHeight="100.0" prefWidth="466.0" spacing="2.0">
          <children>
             <Button fx:id="ageGroupButton" mnemonicParsing="false" onAction="#checkAgeGroup" prefHeight="25.0" prefWidth="94.0" styleClass="button-settings" text="Age" visible="false" />
             <Button fx:id="genderGroupButton" mnemonicParsing="false" onAction="#checkGenderGroup" prefHeight="25.0" prefWidth="94.0" styleClass="button-settings" text="Gender" visible="false" />
@@ -125,9 +127,10 @@
             <Button fx:id="yearGroupButton" mnemonicParsing="false" onAction="#checkYearGroup" prefHeight="25.0" prefWidth="94.0" styleClass="button-settings" text="Year" visible="false" />
          </children>
       </HBox>
-      <CheckBox fx:id="winnerStats" layoutX="447.0" layoutY="501.0" maxHeight="17.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="118.0" text="Winner stats" visible="false">
+      <CheckBox fx:id="winnerStats" layoutX="458.0" layoutY="680.0" maxHeight="17.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="118.0" text="Winner stats" visible="false">
          <font>
             <Font size="10.0" />
-         </font></CheckBox>
+         </font>
+      </CheckBox>
    </children>
 </Pane>

@@ -10,7 +10,6 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -103,8 +102,7 @@ public class MainController implements Initializable {
             inputField.setText("Please Enter a name");
             inputField.requestFocus();
             inputField.selectAll();
-        }
-        else {
+        } else {
             String age = ((RadioButton) ageGroup.getSelectedToggle()).getId();
             String gender = ((RadioButton) genderGroup.getSelectedToggle()).getId();
             String origin = ((RadioButton) originGroup.getSelectedToggle()).getId();
@@ -123,7 +121,6 @@ public class MainController implements Initializable {
     /**
      * Action event for checkResults button. Calculates the votes saved in the candidateList/voteList and displays
      * a pie chart with the candidates.
-     *
      */
     public void checkResults(ActionEvent event) throws Exception {
         // sorts the candidates based on votes from voteList
@@ -187,6 +184,7 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
     }
+
     /**
      * Action event for ageGroupButton. Displays age groups in a new window with a pie chart
      */
@@ -202,7 +200,7 @@ public class MainController implements Initializable {
             int a2124 = 0;
             int a2529 = 0;
             int a3039 = 0;
-            int a40   = 0;
+            int a40 = 0;
 
             int iterations = getNumberOfCandidates();
             if (winnerStats.isSelected()) iterations = 1;
@@ -213,7 +211,7 @@ public class MainController implements Initializable {
                 a2124 += candidateList[i].getAge2124();
                 a2529 += candidateList[i].getAge2529();
                 a3039 += candidateList[i].getAge3039();
-                a40   += candidateList[i].getAge40();
+                a40 += candidateList[i].getAge40();
 
             }
             // makes an Observable list, similar to ArrayList but for FX nodes
@@ -225,7 +223,7 @@ public class MainController implements Initializable {
             if (a2124 > 0) pieChartDataList.add(new PieChart.Data("21 - 24", a2124 / (voteList.length - 1.0)));
             if (a2529 > 0) pieChartDataList.add(new PieChart.Data("25 - 29", a2529 / (voteList.length - 1.0)));
             if (a3039 > 0) pieChartDataList.add(new PieChart.Data("30 - 39", a3039 / (voteList.length - 1.0)));
-            if (a40 >   0) pieChartDataList.add(new PieChart.Data("40+", a40 / (voteList.length - 1.0)));
+            if (a40 > 0) pieChartDataList.add(new PieChart.Data("40+", a40 / (voteList.length - 1.0)));
 
             // create a Pie chart to display the age group that voted
             final PieChart chart = new PieChart(pieChartDataList);
@@ -272,6 +270,7 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
     }
+
     /**
      * Action event for genderGroupButton. Displays gender groups in a new window with a pie chart
      */
@@ -354,6 +353,7 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
     }
+
     /**
      * Action event for originGroupButton. Displays origin groups in a new window with a pie chart
      */
@@ -436,6 +436,7 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
     }
+
     /**
      * Action event for courseGroupButton. Displays course groups in a new window with a pie chart
      */
@@ -525,6 +526,7 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
     }
+
     /**
      * Action event for yearGroupButton. Displays year groups in a new window with a pie chart
      */
