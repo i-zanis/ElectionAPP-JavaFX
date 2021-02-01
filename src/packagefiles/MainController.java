@@ -624,6 +624,7 @@ public class MainController implements Initializable {
         originGroupButton.setVisible(true);
         courseGroupButton.setVisible(true);
         yearGroupButton.setVisible(true);
+        inputField.clear();
     }
 
     /**
@@ -637,6 +638,7 @@ public class MainController implements Initializable {
         originGroupButton.setVisible(false);
         courseGroupButton.setVisible(false);
         yearGroupButton.setVisible(false);
+        inputField.clear();
     }
 }
 
